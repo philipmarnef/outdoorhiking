@@ -1,0 +1,22 @@
+.text-header {
+	font-size: 6vw;
+}
+
+@screen landscape {
+	.text-header {
+		font-size: 3vw;
+	}
+}
+
+[data-header] {
+	overflow: hidden;
+	transition: max-height 0.2s ease-in-out;
+}
+
+[data-header].collapsed {
+	max-height: 0;
+}
+
+[data-header].expanded {
+	max-height: 3rem;
+}

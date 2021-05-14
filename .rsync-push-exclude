@@ -1,0 +1,4 @@
+.DS_Store
+storage/cache
+storage/sessions
+public/media

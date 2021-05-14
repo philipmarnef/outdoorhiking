@@ -1,0 +1,13 @@
+@layer utilities {
+	@variants responsive {
+		.columns-2 {
+			columns: 2;
+			column-gap: 1.25rem;
+		}
+
+		.columns-2 > * {
+			break-inside: avoid;
+			page-break-inside: avoid;
+		}
+	}
+}

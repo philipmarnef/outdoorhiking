@@ -1,0 +1,23 @@
+@layer base {
+	@font-face {
+		font-family: 'helvetica';
+		src:	url('../fonts/font-subset.woff2') format("woff2"),
+					url('../fonts/font-subset.woff') format("woff");
+	}
+
+	html {
+		@apply font-sans text-base;
+	}
+}
+
+@layer utilities {
+	.hyphens {
+		hyphens: auto;
+	}
+}
+
+.bodytext p:not(:first-child),
+.bodytext ol:not(:first-child),
+.bodytext ul:not(:first-child) {
+	margin-top: 1em;
+}

@@ -1,0 +1,46 @@
+title:
+  en: Artwork
+  nl: Kunstwerk
+
+status:
+  draft: 
+    label:
+      nl: Concept
+      en: Draft
+  listed:
+    label:
+      nl: Gepubliceerd
+      en: Published
+
+options:
+  changeTemplate: false
+
+sections:
+  fields:
+    type: fields
+    fields:
+      audiotitle:
+        label:
+          en: Title of the audio piece
+          nl: Titel van het geluidswerk
+        type: text
+      artist:
+        label:
+          en: Artist
+          nl: Kunstenaar
+        type: text
+        width: 1/2
+      minutes:
+        label:
+          en: Minutes
+          nl: Minuten
+        type: number
+        max: 59
+        width: 1/4
+      seconds:
+        label:
+          en: Seconds
+          nl: Seconden
+        type: number
+        max: 59
+        width: 1/4

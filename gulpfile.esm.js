@@ -1,0 +1,105 @@
+import del                  from    'del';
+import { series, parallel, src, dest, watch } from 'gulp';
+import image                from    'gulp-image';
+import sourcemaps           from    'gulp-sourcemaps';
+import postcss              from    'gulp-postcss';
+import postcssEasyImport    from    'postcss-easy-import';
+import tailwind             from    'tailwindcss';
+import browserSync          from    'browser-sync';
+import webpack              from    'webpack-stream';
+
+const forProduction = process.env.NODE_ENV === 'production';
+
+const baseUrl = 'http://outdoorhiking.test';
+
+let postcssPlugins = [
+  postcssEasyImport(),
+  tailwind()
+];
+
+export function clean () {
+  return del([
+    './html/public/assets/css/*', 
+    './html/public/assets/js/*', 
+    './html/public/assets/maps/*'
+  ]);
+}
+
+function cleanImages () {
+  return del('./html/public/assets/images/*');
+}
+
+function imageMin () {
+  return src('./src/images/*')
+    .pipe(image())
+    .pipe(dest('./html/public/assets/images'));
+}
+
+export const images = series(cleanImages, imageMin);
+
+function css () {
+  return src([
+    './src/css/main.css', 
+    './src/css/print.css'
+  ])
+//    .pipe(sourcemaps.init())
+    .pipe(postcss(postcssPlugins))
+//    .pipe(sourcemaps.write('../maps'))
+    .pipe(dest('./html/public/assets/css'))
+    .pipe(browserSync.stream({once: true}));
+}
+
+function js () {
+  const mode = forProduction ? 'production' : 'development';
+  return src([
+    './src/js/*'
+  ])
+    .pipe(webpack({
+      mode: mode,
+      module: {
+        rules: [
+          { 
+            test: /\.js$/, 
+            exclude: /node_modules/, 
+            loader: "babel-loader" 
+          },
+          {
+            test: /\.css$/,
+            use: [
+              'css-loader'
+            ]
+          }
+        ],
+      },
+      entry: {
+        main: './src/js/main.js',
+      },
+      output: {
+        filename: '[name].js'
+      }
+    }))
+    .pipe(dest('./html/public/assets/js'))
+    .pipe(browserSync.stream());
+}
+
+function watcher () {
+  browserSync.init({
+    proxy: {
+      target: baseUrl,
+      proxyReq: [
+        function (req) {
+          req.setHeader('Access-Control-Allow-Origin', '*');
+        }
+      ]
+    },
+    open: false
+  });
+  watch('./src/css/**/*').on('change', css);
+  watch('./src/js/**/*').on('change', js);
+  watch('./html/site/**/*').on('change', browserSync.reload);
+}
+
+export const build = series(parallel(clean, images), parallel(css,js));
+export const serve = series(build, watcher)
+
+export default serve;

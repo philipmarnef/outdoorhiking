@@ -1,0 +1,110 @@
+title: Homepage
+
+status:
+  draft: 
+    label:
+      nl: Concept
+      en: Draft
+  listed:
+    label:
+      nl: Gepubliceerd
+      en: Published
+
+options:
+  changeTemplate: false
+  delete: false
+
+columns:
+# column
+  fields:
+    width: 2/3
+    sections:
+    # section
+      fields:
+        type: fields
+        fields:
+          intro:
+            label:
+              nl: Introtekst
+              en: Intro text
+            type: markdown
+            size: large
+          info:
+            label:
+              nl: Praktische info
+              en: Practical information
+            type: markdown
+            size: medium
+          credits:
+            label:
+              nl: Credits
+              en: Credits
+            type: markdown
+            size: small
+            width: 1/2
+          thanks:
+            label:
+              nl: Credits – dank
+              en: Credits – thanks
+            type: markdown
+            size: small
+            width: 1/2
+          support:
+            label:
+              nl: Credits – steun
+              en: Credits – support
+            type: markdown
+            size: small
+            width: 1/2
+          partners:
+            label: Partners
+            type: structure
+            columns:
+              logo:
+                width: 1/4
+              website:
+                width: 3/4
+            fields:
+              logo:
+                label: Logo
+                type: files
+                uploads:
+                  template: image
+                image:
+                  back: white
+              website:
+                label: Website
+                type: url
+            width: 1/2
+# column
+  pages:
+    width: 1/3
+    sections:
+    # section
+      workheadline:
+        type: fields
+        fields:
+          workheadline:
+            label:
+              nl: Kunstwerken
+              en: Works of art
+            type: headline
+            numbered: false
+    # section
+      workdrafts:
+        headline:
+          nl: Concepten
+          en: Drafts
+        type: pages
+        templates:
+          - artwork
+        status: draft
+    # section
+      works:
+        headline:
+          nl: Gepubliceerd
+          en: Published
+        type: pages
+        templates:
+          - artwork
+        status: listed

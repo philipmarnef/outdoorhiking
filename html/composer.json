@@ -1,0 +1,13 @@
+{
+  "require": {
+    "getkirby/cms": "^3.0",
+    "k-community/markdown-field": "^1.0",
+    "bnomei/kirby3-fingerprint": "^3.0"
+  },
+  "config": {
+    "optimize-autoloader": true
+  },
+  "extra": {
+    "kirby-cms-path": false
+  }
+}

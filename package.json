@@ -1,0 +1,33 @@
+{
+  "name": "outdoorhiking",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "serve": "npx gulp serve",
+    "build": "NODE_ENV=production npx gulp build",
+    "push": "rsync -avhi html/ root@172.104.225.129:/var/www/outdoorhiking.be/html/ --chown=www-data:www-data --exclude-from=.rsync-push-exclude --delete"
+  },
+  "keywords": [],
+  "author": "Philip Marnef",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "autoprefixer": "^10.2.3",
+    "babel-loader": "^8.2.2",
+    "browser-sync": "^2.26.13",
+    "css-loader": "^3.6.0",
+    "del": "^5.0.0",
+    "esm": "^3.2.25",
+    "gulp": "^4.0.2",
+    "gulp-image": "^6.2.1",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sourcemaps": "^2.6.5",
+    "postcss": "^8.2.4",
+    "postcss-easy-import": "^3.0.0",
+    "tailwindcss": "^2.0.2",
+    "webpack-stream": "^5.2.1"
+  }
+}
