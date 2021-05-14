@@ -69,6 +69,7 @@ module.exports = {
         '80': '20rem',
         '96': '24rem',
         '128': '32rem',
+        'ws': 'var(--ws)',
       },
       height: {
         'screen': 'calc(100 * var(--vh, 1vh))',

@@ -3,79 +3,77 @@
 <?= snippet('head') ?>
 
 <body class="text-black bg-white">
-	<header class="fixed z-100 w-full landscape:w-6/12 px-5 pt-4 pb-2 text-header leading-tight bg-white">
-		<h1>Outdoor Hiking with sound &ndash;<br>&amp; other fireworks</h1>
-		<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
-	</header>
 
-	<section class="fixed landscape:z-2 flex flex-col w-full landscape:w-6/12 h-screen">
-		<div class="flex-grow-0 flex-shrink w-full px-5 pt-4 pb-2 text-header leading-tight"  aria-hidden="true">
-			<p>Outdoor Hiking with sound &ndash;<br>&amp; other fireworks</p>
-			<p class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</p>
-		</div>
-		<figure class="relative flex flex-wrap content-between h-full mx-5">
-			<img class="w-full max-h-25vh mx-auto" src="/assets/images/OH-spool.svg" style="padding-right: 1vw;" alt="">
-			<img class="absolute inset-0 w-full h-full max-w-50vh mx-auto" src="/assets/images/OH-line-mobile.svg" alt="">
-			<img class="w-full max-h-25vh mx-auto transform rotate-180" src="/assets/images/OH-spool.svg" style="padding-left: 1vw;" alt="">
-		</figure>
-		<ul class="flex-grow-0 flex-shrink w-full px-5 text-header divide-y-2 divide-black">
-			<li class="pt-2 pb-1 leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
-			<li class="pt-2 pb-1 leading-none"><span class="inline-block w-3/12">B:</span><span>Middelheimpark</span></li>
-			<li class="pt-2 pb-1 leading-none"><span class="inline-block w-3/12">C:</span><span>Park Vogelenzang</span></li>
-		</ul>
-	</section>
+	<main>
+		<section class="fixed flex flex-col w-full landscape:w-6/12 h-screen">
+			<header class="z-100 flex-grow-0 flex-shrink w-full px-ws pt-4 pb-2 text-poster bg-white">
+				<h1>Outdoor Hiking with sound &ndash;<br>&amp; other fireworks</h1>
+				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
+			</header>
+			<figure class="relative flex flex-wrap content-between h-full mx-ws">
+				<img class="w-full max-h-25vh mx-auto" src="/assets/images/OH-spool.svg" style="padding-right: 1vw;" alt="">
+				<img class="absolute inset-0 w-full h-full max-w-50vh mx-auto" src="/assets/images/OH-line-mobile.svg" alt="">
+				<img class="w-full max-h-25vh mx-auto transform rotate-180" src="/assets/images/OH-spool.svg" style="padding-left: 1vw;" alt="">
+			</figure>
+			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster divide-y-2 divide-black">
+				<li class="leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
+				<li class="leading-none"><span class="inline-block w-3/12">B:</span><span>Middelheimpark</span></li>
+				<li class="leading-none"><span class="inline-block w-3/12">C:</span><span>Park Vogelenzang</span></li>
+			</ul>
+		</section>
 
-	<section class="relative z-2 landscape:z-1 pt-1 landscape:pt-0">
-		<div class="landscape:w-6/12 mt-vh ml-auto landscape:mt-0 p-5 bg-green">
-			<div class="xl:columns-2 bodytext hyphens">
-				<?= $page->intro()->kt() ?>
-				<div class="relative pl-10 mt-lb">
-					<figure class="absolute top-0 left-0 -ml-2">
-						<img class="w-9" src="/assets/images/info.svg" alt="">
-					</figure>
-					<?= $page->info()->kt() ?>
-				</div>
-			</div>
-			<h3 class="landscape:hidden pl-10 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
-			<div class="my-lb">
-				<table class="w-full lg:text-lg">
-				<?php foreach($page->children() as $work): ?>
-					<tr>
-						<td class="w-10 lg:w-12 xl:w-16"><?= str_pad($work->num(), 2, '0', STR_PAD_LEFT) ?></td>
-						<td><?= $work->artist() ?></td>
-						<td class="text-right"><?= $work->minutes() ?>:<?= str_pad($work->seconds(), 2, '0', STR_PAD_LEFT) ?></td>
-					</tr>
-				<?php endforeach ?>
-				</table>
-			</div>
-			<footer class="grid grid-flow-row-dense grid-cols-2 xl:grid-cols-3 gap-3 xl:gap-5 text-sm">
-				<div>
-					<?= $page->credits()->kt() ?>
-				</div>
-				<div class="xl:col-start-3">
-					<?= $page->thanks()->kt() ?>
-				</div>
-				<div class="col-span-2 xl:col-span-1 grid grid-cols-2 xl:flex flex-wrap items-between">
-					<div>
-						<?= $page->support()->kt() ?>
+		<section class="relative z-2 pt-1 landscape:pt-0">
+			<div class="landscape:w-6/12 mt-vh ml-auto landscape:mt-0 p-ws bg-green">
+				<div class="xl:columns-2 bodytext hyphens">
+					<?= $page->intro()->kt() ?>
+					<div class="relative pl-10 mt-lb">
+						<figure class="absolute top-0 left-0 -ml-2">
+							<img class="w-9" src="/assets/images/info.svg" alt="">
+						</figure>
+						<?= $page->info()->kt() ?>
 					</div>
-					<div class="flex justify-between items-end xl:w-full">
-					<?php foreach($page->partners()->toStructure() as $partner): ?>
-					<?php if($partner->website()->isNotEmpty()): ?>
-						<a href="<?= $partner->website() ?>" target="_blank">
-							<img class="h-8" src="<?= $partner->logo()->toFile()->url() ?>" alt="">
-						</a>
-					<?php else: ?>
-						<span>
-							<img class="h-8" src="<?= $partner->logo()->toFile()->url() ?>" alt="">
-						</span>
-					<?php endif ?>
+				</div>
+				<h3 class="landscape:hidden pl-10 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
+				<div class="my-lb">
+					<table class="w-full lg:text-lg">
+					<?php foreach($page->children() as $work): ?>
+						<tr>
+							<td class="w-10 lg:w-12 xl:w-16"><?= str_pad($work->num(), 2, '0', STR_PAD_LEFT) ?></td>
+							<td><?= $work->artist() ?></td>
+							<td class="text-right"><?= $work->minutes() ?>:<?= str_pad($work->seconds(), 2, '0', STR_PAD_LEFT) ?></td>
+						</tr>
 					<?php endforeach ?>
-					</div>
+					</table>
 				</div>
-			</footer>
-		</div>
-	</section>
+				<footer class="grid grid-flow-row-dense grid-cols-2 xl:grid-cols-3 gap-3 xl:gap-5 text-sm">
+					<div>
+						<?= $page->credits()->kt() ?>
+					</div>
+					<div class="xl:col-start-3">
+						<?= $page->thanks()->kt() ?>
+					</div>
+					<div class="col-span-2 xl:col-span-1 grid grid-cols-2 xl:flex flex-wrap items-between">
+						<div>
+							<?= $page->support()->kt() ?>
+						</div>
+						<div class="flex justify-between items-end xl:w-full">
+						<?php foreach($page->partners()->toStructure() as $partner): ?>
+						<?php if($partner->website()->isNotEmpty()): ?>
+							<a href="<?= $partner->website() ?>" target="_blank">
+								<img class="h-8" src="<?= $partner->logo()->toFile()->url() ?>" alt="">
+							</a>
+						<?php else: ?>
+							<span>
+								<img class="h-8" src="<?= $partner->logo()->toFile()->url() ?>" alt="">
+							</span>
+						<?php endif ?>
+						<?php endforeach ?>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</section>
+	</main>
 
 </body>
 

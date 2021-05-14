@@ -1,0 +1,19 @@
+.text-poster {
+	font-size: 5.65vw;
+	line-height: 1.1;
+}
+
+.poster-footer {
+	padding-top: 0.3em;
+	padding-bottom: 0.5em;
+}
+
+.poster-footer > * {
+	padding: 0.4em 0 0.2em;
+}
+
+@screen landscape {
+	.text-poster {
+		font-size: 2.75vw;
+	}
+}

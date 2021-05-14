@@ -1,0 +1,9 @@
+:root {
+	--ws: 5vw;
+}
+
+@screen landscape {
+	:root {
+		--ws: 2.4182vw;
+	}
+}

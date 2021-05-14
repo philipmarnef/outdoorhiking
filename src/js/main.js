@@ -8,10 +8,7 @@ const setVH = function () {
 document.addEventListener('DOMContentLoaded', e => {
 	setVH();
 
-	const header = new Header();
-
 	window.addEventListener('resize', e => {
 		setVH();
-		header.reload();
 	});
 });
