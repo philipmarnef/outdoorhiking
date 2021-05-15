@@ -8,6 +8,42 @@
 	padding-bottom: 0.5em;
 }
 
+.poster-image {
+	background: url("../images/OH-line-vertical.svg") no-repeat 50% 50% / 100% 100%;
+}
+
+.poster-image::before,
+.poster-image::after {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: block;
+	content: "";
+	background: url("../images/OH-spool-vertical.svg") no-repeat 0 0 / 98.8% auto;
+}
+
+.poster-image::after {
+	transform: scaleY(-1);
+}
+
+.poster-image.horizontal {
+	width: 100%;
+	background: url("../images/OH-line-horizontal.svg") no-repeat 50% 50% / 100% 100%;
+}
+
+.poster-image.horizontal::before,
+.poster-image.horizontal::after {
+	background: url("../images/OH-spool-horizontal.svg") no-repeat 0 100% / auto 98.8%;
+}
+
+.poster-image.horizontal::after {
+	transform: scale(-1, 1);
+}
+
 .poster-footer > * {
 	padding: 0.4em 0 0.2em;
 }

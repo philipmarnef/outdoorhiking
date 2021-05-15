@@ -1,4 +1,5 @@
 import Header from './components/header.js';
+import Poster from './components/poster.js';
 
 const setVH = function () {
 	let vh = window.innerHeight * 0.01;
@@ -7,8 +8,10 @@ const setVH = function () {
 
 document.addEventListener('DOMContentLoaded', e => {
 	setVH();
+	const poster = new Poster();
 
 	window.addEventListener('resize', e => {
 		setVH();
+		poster.init();
 	});
 });

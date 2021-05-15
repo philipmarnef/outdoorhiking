@@ -10,11 +10,9 @@
 				<h1>Outdoor Hiking with sound &ndash;<br>&amp; other fireworks</h1>
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
 			</header>
-			<figure class="relative flex flex-wrap content-between h-full mx-ws">
-				<img class="w-full max-h-25vh mx-auto" src="/assets/images/OH-spool.svg" style="padding-right: 1vw;" alt="">
-				<img class="absolute inset-0 w-full h-full max-w-50vh mx-auto" src="/assets/images/OH-line-mobile.svg" alt="">
-				<img class="w-full max-h-25vh mx-auto transform rotate-180" src="/assets/images/OH-spool.svg" style="padding-left: 1vw;" alt="">
-			</figure>
+			<div class="flex justify-center items-center w-full h-full px-ws">
+				<div class="poster-image relative w-full h-full"></div>
+			</div>
 			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster divide-y-2 divide-black">
 				<li class="leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
 				<li class="leading-none"><span class="inline-block w-3/12">B:</span><span>Middelheimpark</span></li>
@@ -22,7 +20,7 @@
 			</ul>
 		</section>
 
-		<section class="relative z-2 pt-1 landscape:pt-0">
+		<section class="relative z-2 pt-1 landscape:-z-1 landscape:pt-0">
 			<div class="landscape:w-6/12 mt-vh ml-auto landscape:mt-0 p-ws bg-green">
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
