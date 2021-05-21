@@ -4,10 +4,11 @@
 
 <body class="text-black bg-white">
 
-	<main>
+	<main class="relative">
+
 		<section class="fixed flex flex-col w-full landscape:w-6/12 h-screen">
 			<header class="z-100 flex-grow-0 flex-shrink w-full px-ws pt-4 pb-2 text-poster bg-white">
-				<h1>Outdoor Hiking with sound &ndash;<br>&amp; other fireworks</h1>
+				<h1>Outdoor Hiking with Sound &ndash;<br>&amp; Other Fireworks</h1>
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
 			</header>
 			<div class="flex justify-center items-center w-full h-full px-ws">
@@ -20,8 +21,8 @@
 			</ul>
 		</section>
 
-		<section class="relative z-2 pt-1 landscape:-z-1 landscape:pt-0">
-			<div class="landscape:w-6/12 mt-vh ml-auto landscape:mt-0 p-ws bg-green">
+		<section class="relative landscape:w-1/2 landscape:left-1/2 z-2 pt-1 landscape:pt-0">
+			<div class="mt-vh landscape:mt-0 p-ws bg-green">
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
 					<div class="relative pl-10 mt-lb">
@@ -35,7 +36,7 @@
 				<div class="my-lb">
 					<table class="w-full lg:text-lg">
 					<?php foreach($page->children() as $work): ?>
-						<tr>
+						<tr class="align-top" data-app-open="<?= $work->appcode() ?>">
 							<td class="w-10 lg:w-12 xl:w-16"><?= str_pad($work->num(), 2, '0', STR_PAD_LEFT) ?></td>
 							<td><?= $work->artist() ?></td>
 							<td class="text-right"><?= $work->minutes() ?>:<?= str_pad($work->seconds(), 2, '0', STR_PAD_LEFT) ?></td>
@@ -71,6 +72,44 @@
 				</footer>
 			</div>
 		</section>
+
+		<section class="fixed inset-0 left-full landscape:left-1/2 z-3 landscape:z-1 w-full landscape:w-1/2 h-screen p-ws bg-red" data-app>
+			<div class="flex flex-col h-full lg:text-lg">
+				<header class="w-full mb-ws-half leading-snug">
+					<div class="flex justify-between items-start">
+						<h3 class="flex justify-start"><span class="mr-ws" data-app-slot="num"></span><span data-app-slot="artist">–</span></h3>
+						<button data-app-close>sluit</button>
+					</div>
+					<h4 data-app-slot="title">–</h4>
+					<nav>
+						<ul class="flex justify-between">
+							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="info">over</a></li>
+							<li><a class="inline-block border-black cursor-default" href="#app_map" data-app-view="map">kaart</a></li>
+							<li><a class="inline-block border-b border-black" href="#app_help" data-app-view="help">help</a></li>
+						</ul>
+					</nav>
+				</header>
+				<section class="relative w-full h-full">
+					<div id="app_info" class="bg-red absolute inset-0 w-full h-full overflow-hidden" data-app-slot="info">
+					</div>
+					<div id="app_help" class="bg-red absolute inset-0 w-full h-full overflow-hidden" data-app-slot="help">
+						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
+							<?= $page->intro()->kt() ?>
+							<?= $page->info()->kt() ?>
+						</article>					
+					</div>
+					<div id="app_map" class="bg-red absolute inset-0 w-full h-full border border-black" data-app-slot="map">map</div>
+				</section>
+				<div class="player w-full">
+					<button data-player-control="rewind">rewind</button>
+					<button data-player-control="play">play</button>
+					<audio data-player-audio>
+						<source src="" type="audio/mpeg" data-player-audio-src/>
+					</audio>
+				</div>
+			</div>
+		</section>
+
 	</main>
 
 </body>

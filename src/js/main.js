@@ -1,4 +1,4 @@
-import Header from './components/header.js';
+import App from './components/app.js';
 import Poster from './components/poster.js';
 
 const setVH = function () {
@@ -9,6 +9,7 @@ const setVH = function () {
 document.addEventListener('DOMContentLoaded', e => {
 	setVH();
 	const poster = new Poster();
+	const app = new App();
 
 	window.addEventListener('resize', e => {
 		setVH();

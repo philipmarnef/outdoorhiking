@@ -1,0 +1,9 @@
+@layer utilities {
+	.scrollbars-none {
+		scrollbar-width: none;
+	}
+
+	.scrollbars-none::-webkit-scrollbar {
+		display: none;
+	}
+}

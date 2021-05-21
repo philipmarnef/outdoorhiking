@@ -1,0 +1,40 @@
+[data-app] {
+	transition: left 0.4s ease-out;
+	/* force hardware acceleration */
+	will-change: left;
+	transform: translateZ(0);
+}
+
+[data-app-close] {
+	position: relative;
+	display: block;
+	overflow: hidden;
+	width: var(--ws);
+	height: var(--ws);
+	text-indent: -9999px;
+}
+
+[data-app-close]::before,
+[data-app-close]::after {
+	@apply absolute block top-1/2 bg-black;
+	left: calc(-0.2071 * var(--ws));
+	width: calc(1.4142 * var(--ws));
+	height: 1px;
+	content: " ";
+}
+
+[data-app-close]::before {
+	transform: rotate(-45deg);
+}
+
+[data-app-close]::after {
+	transform: rotate(45deg);
+}
+
+@screen landscape {
+	[data-app-close]::before,
+	[data-app-close]::after {
+		left: 0;
+		width: var(--ws);
+	}
+}

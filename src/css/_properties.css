@@ -1,9 +1,11 @@
 :root {
 	--ws: 5vw;
+	--ws-half: 2.5vw;
 }
 
 @screen landscape {
 	:root {
 		--ws: 2.4182vw;
+		--ws-half: 1.2091vw;
 	}
 }

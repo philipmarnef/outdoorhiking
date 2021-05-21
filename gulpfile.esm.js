@@ -42,9 +42,9 @@ function css () {
     './src/css/main.css', 
     './src/css/print.css'
   ])
-//    .pipe(sourcemaps.init())
+    .pipe(sourcemaps.init())
     .pipe(postcss(postcssPlugins))
-//    .pipe(sourcemaps.write('../maps'))
+    .pipe(sourcemaps.write('../maps'))
     .pipe(dest('./html/public/assets/css'))
     .pipe(browserSync.stream({once: true}));
 }
@@ -94,8 +94,8 @@ function watcher () {
     },
     open: false
   });
-  watch('./src/css/**/*').on('change', css);
-  watch('./src/js/**/*').on('change', js);
+  watch('./src/css/**/*', {usePolling: true}, css);
+  watch('./src/js/**/*', {usePolling: true}, js);
   watch('./html/site/**/*').on('change', browserSync.reload);
 }
 

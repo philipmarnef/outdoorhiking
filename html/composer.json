@@ -2,7 +2,8 @@
   "require": {
     "getkirby/cms": "^3.0",
     "k-community/markdown-field": "^1.0",
-    "bnomei/kirby3-fingerprint": "^3.0"
+    "bnomei/kirby3-fingerprint": "^3.0",
+    "sylvainjule/locator": "^1.0"
   },
   "config": {
     "optimize-autoloader": true

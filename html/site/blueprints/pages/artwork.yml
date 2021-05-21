@@ -15,32 +15,104 @@ status:
 options:
   changeTemplate: false
 
-sections:
+tabs:
   fields:
-    type: fields
-    fields:
-      audiotitle:
-        label:
-          en: Title of the audio piece
-          nl: Titel van het geluidswerk
-        type: text
-      artist:
-        label:
-          en: Artist
-          nl: Kunstenaar
-        type: text
-        width: 1/2
-      minutes:
-        label:
-          en: Minutes
-          nl: Minuten
-        type: number
-        max: 59
-        width: 1/4
-      seconds:
-        label:
-          en: Seconds
-          nl: Seconden
-        type: number
-        max: 59
-        width: 1/4
+    label:
+      nl: Info
+      en: Info
+    icon: page
+    columns:
+    # column
+      meta:
+        width: 1/3
+        sections:
+          metafields:
+            type: fields
+            fields:
+              audiotitle:
+                label:
+                  nl: Titel van het geluidswerk
+                  en: Title of the audio piece
+                type: text
+              artist:
+                label:
+                  nl: Kunstenaar
+                  en: Artist
+                type: text
+                translate: false
+              audiofile:
+                label:
+                  nl: Geluidsbestand
+                  en: Audiofile
+                type: files
+                uploads:
+                  template: audio
+                image: false
+              minutes:
+                label:
+                  nl: Minuten
+                  en: Minutes
+                type: number
+                max: 59
+                translate: false
+                width: 1/2
+              seconds:
+                label:
+                  nl: Seconden
+                  en: Seconds
+                type: number
+                max: 59
+                translate: false
+                width: 1/2
+              appcode:
+                label:
+                  nl: Url code
+                  en: Url code
+                type: text
+                before: "https://outdoorhiking.be/a/"
+                max: 3
+                min: 3
+                disabled: true
+                translate: false
+    # column
+      text:
+        width: 2/3
+        sections:
+          textfields:
+            type: fields
+            fields:
+              text:
+                label:
+                  nl: Tekst
+                  en: Text
+                type: markdown
+                size: huge
+# tab
+  geo:
+    label:
+      nl: Locatie
+      en: Location
+    icon: map
+    sections:
+      geofields:
+        type: fields
+        fields:
+          location:
+            label: 
+              nl: Locatie
+              en: Location
+            type: locator
+            center:
+              lat: 51.180923215345445
+              lon: 4.412813186645509
+            default:
+              lat: '51.180923215345445'
+              lon: '4.412813186645509'
+              number: null
+              city: null
+              country: null
+              postcode: null
+              address: null
+            zoom:
+              default: 16
+            translate: false

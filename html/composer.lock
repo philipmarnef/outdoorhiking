@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a8869328dd6b5bb790f7587dc1f26ef1",
+    "content-hash": "043af058221c8be2352a996c487f38c8",
     "packages": [
         {
             "name": "bnomei/kirby3-fingerprint",
@@ -766,6 +766,44 @@
                 "source": "https://github.com/php-fig/log/tree/1.1.3"
             },
             "time": "2020-03-23T09:12:05+00:00"
+        },
+        {
+            "name": "sylvainjule/locator",
+            "version": "1.0.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sylvainjule/kirby-locator.git",
+                "reference": "07f6cad4f6bd09489ee378e318b387c803392faa"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/07f6cad4f6bd09489ee378e318b387c803392faa",
+                "reference": "07f6cad4f6bd09489ee378e318b387c803392faa",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1"
+            },
+            "type": "kirby-plugin",
+            "extra": {
+                "installer-name": "locator"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylvain Julé",
+                    "email": "contact@sylvain-jule.fr"
+                }
+            ],
+            "description": "A map & geolocation field, built on top of open-source services / Mapbox",
+            "support": {
+                "issues": "https://github.com/sylvainjule/kirby-locator/issues",
+                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.0.8"
+            },
+            "time": "2020-12-26T22:06:42+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",

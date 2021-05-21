@@ -11,7 +11,7 @@ module.exports = {
   },
   theme: {
     colors: {
-      red: "#f24343",
+      red: "#ff5c69",
       green: "#2ee6a8",
       white: "#fff",
       grey: "#e6e7e8",
@@ -70,6 +70,7 @@ module.exports = {
         '96': '24rem',
         '128': '32rem',
         'ws': 'var(--ws)',
+        'ws-half': 'var(--ws-half)',
       },
       height: {
         'screen': 'calc(100 * var(--vh, 1vh))',

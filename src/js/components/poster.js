@@ -1,5 +1,5 @@
 const MAX_RATIO = 0.75;
-const CLASS = 'horizontal';
+const CLASS_LANDSCAPE = 'horizontal';
 
 export default function Poster (selector = '.poster-image')
 {
@@ -17,9 +17,9 @@ export default function Poster (selector = '.poster-image')
 			const r = getRatio(this.poster);
 
 			if(r < 1) {
-				this.poster.classList.remove(CLASS);
+				this.poster.classList.remove(CLASS_LANDSCAPE);
 			} else {
-				this.poster.classList.add(CLASS);
+				this.poster.classList.add(CLASS_LANDSCAPE);
 			}
 
 			if( r > MAX_RATIO && r < 1) {
