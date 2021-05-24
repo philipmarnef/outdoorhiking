@@ -40,7 +40,7 @@ export const images = series(cleanImages, imageMin);
 function css () {
   return src([
     './src/css/main.css', 
-    './src/css/print.css'
+    './src/css/print.css',
   ])
     .pipe(sourcemaps.init())
     .pipe(postcss(postcssPlugins))

@@ -1,3 +1,5 @@
+import Map from './map.js';
+
 const URL = `/a/`,
 			ATTR_CONTAINER = 'data-app',
 			ATTR_BUTTON_OPEN = 'data-app-open',
@@ -92,6 +94,9 @@ export default function App () {
 					$info.parentElement.appendChild($info);
 				});
 			});
+
+			// load map
+			this.map = new Map();
 
 			// arm app triggers
 			this.$buttons.forEach(button => {

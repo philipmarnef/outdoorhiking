@@ -96,9 +96,11 @@
 						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
 							<?= $page->intro()->kt() ?>
 							<?= $page->info()->kt() ?>
-						</article>					
+						</article>
 					</div>
-					<div id="app_map" class="bg-red absolute inset-0 w-full h-full border border-black" data-app-slot="map">map</div>
+					<div class="bg-red absolute inset-0 w-full h-full" data-app-slot="map">
+							<div id="app_map" class="absolute inset-0 w-full h-full border border-black"></div>
+					</div>
 				</section>
 				<div class="player w-full">
 					<button data-player-control="rewind">rewind</button>

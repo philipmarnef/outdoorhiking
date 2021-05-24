@@ -1,0 +1,36 @@
+.leaflet-container a {
+	@apply text-black;
+}
+
+.leaflet-touch .leaflet-control-layers, 
+.leaflet-touch .leaflet-bar {
+	@apply border border-black;
+	border-radius: 0;
+}
+
+.leaflet-bar a, 
+.leaflet-bar a:hover {
+	@apply bg-red border-black;
+}
+
+.leaflet-bar a.leaflet-disabled {
+	@apply bg-red text-auburn;
+}
+
+.leaflet-touch .leaflet-control-layers, 
+.leaflet-touch .leaflet-bar {
+	@apply border-black;
+}
+
+.leaflet-touch .leaflet-bar a:first-child,
+.leaflet-touch .leaflet-bar a:last-child {
+	border-radius: 0;
+}
+
+.leaflet-container .leaflet-control-attribution {
+	@apply text-black bg-red border-black border-l border-t;
+}
+
+.leaflet-container .leaflet-control-attribution a {
+	@apply underline;
+}
