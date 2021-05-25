@@ -90,16 +90,16 @@
 					</nav>
 				</header>
 				<section class="relative w-full h-full">
-					<div id="app_info" class="bg-red absolute inset-0 w-full h-full overflow-hidden" data-app-slot="info">
+					<div id="app_info" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="info">
 					</div>
-					<div id="app_help" class="bg-red absolute inset-0 w-full h-full overflow-hidden" data-app-slot="help">
+					<div id="app_help" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="help">
 						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
 							<?= $page->intro()->kt() ?>
 							<?= $page->info()->kt() ?>
 						</article>
 					</div>
-					<div class="bg-red absolute inset-0 w-full h-full" data-app-slot="map">
-							<div id="app_map" class="absolute inset-0 w-full h-full border border-black"></div>
+					<div class="bg-red absolute inset-0 z-100 w-full h-full" data-app-slot="map">
+							<div id="app_map" class="absolute inset-0 w-full h-full border border-black bg-red"></div>
 					</div>
 				</section>
 				<div class="player w-full">

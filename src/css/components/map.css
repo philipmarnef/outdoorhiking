@@ -1,3 +1,49 @@
+.map-marker {
+	@apply flex justify-center items-center text-lg bg-red;
+}
+
+.map-marker-active {
+	@apply border border-black;
+}
+
+.map-location-outer,
+.map-location-outer-bg,
+.map-location-inner {
+	animation-name: blink;
+	animation-duration: 2s;
+	animation-iteration-count: infinite;
+}
+
+.map-location-inner {
+	animation-delay: 1s;
+}
+
+@keyframes blink {
+	0% {
+		opacity: 0;
+	}
+
+	25% {
+		opacity: 1;
+	}
+
+	75% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+	}
+}
+
+/**
+ ** Leaflet
+ */
+
+ .leaflet-pane {
+	 z-index: 99;
+ }
+
 .leaflet-container a {
 	@apply text-black;
 }

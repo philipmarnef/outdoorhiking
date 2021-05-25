@@ -1,3 +1,4 @@
+import PubSub from 'pubsub-js';
 import Map from './map.js';
 
 const URL = `/a/`,
@@ -7,30 +8,30 @@ const URL = `/a/`,
 			ATTR_NAVIGATION = 'data-app-view',
 			ATTR_SLOT = 'data-app-slot',
 			ATTR_AUDIO = 'data-player-audio',
-			ATTR_AUDIO_SRC = 'data-player-audio-src';
+			ATTR_AUDIO_SRC = 'data-player-audio-src',
+			UPDATE_EVENT = 'artwork-change';
 
 export default function App () {
 
 	const a = {
 		data: {},
 
-		load (code) {
-			// already loaded?
-			const key = '_' + code;
+		load (id) {
+			// already loaded? render from data cache
+			const key = '_' + id;
 			if(this.data.hasOwnProperty(key)) {
-				console.log('Cached');
 				this.render(this.data[key]);
 			}
-			// fetch data
+			// not loaded? fetch data
 			else {
-				const url = window.location.href.replace(/q\/[a-z,A-Z,0-9]{3}(#.*)/, '') + URL + code;
+				const url = window.location.href.replace(/q\/[a-z,A-Z,0-9]{3}(#.*)?/, '') + URL + id;
 	
 				fetch(url)
 					.then(res => res.json())
 					.then(json => {
-						if(json && json.code) {
-							// code might begin with a number, so we prefix with an underscore
-							this.data['_' + code] = json;
+						if(json && json.id) {
+							// id might begin with a number, so we prefix with an underscore
+							this.data['_' + id] = json;
 							this.render(json);
 						}
 					});
@@ -46,6 +47,11 @@ export default function App () {
 				}
 			});
 
+			// set map markers
+			if(!this.hasOwnProperty('map')) this.map = new Map();
+			this.map.addMarkers(json.markers);
+			this.map.selectMarker(json.id);
+
 			// set audio player source
 			const $source = document.querySelector(`[${ATTR_AUDIO_SRC}]`);
 			if($source && json.audiofile) $source.src = json.audiofile;
@@ -54,6 +60,7 @@ export default function App () {
 			this.open();
 
 			// push history
+			this.updateUrl(json.id);
 		},
 
 		open () {
@@ -63,6 +70,15 @@ export default function App () {
 		close () {
 			console.log('close');
 			this.$container.style.left = null;
+		},
+
+		onUpdateEvent (msg, id) {
+			this.load(id);
+		},
+
+		updateUrl(id) {
+			const url = `${window.location.protocol}//${window.location.host}/q/${id}`;
+			window.history.pushState({}, '', url);
 		},
 
 		init () {
@@ -95,24 +111,24 @@ export default function App () {
 				});
 			});
 
-			// load map
-			this.map = new Map();
+			// listen for changes
+			PubSub.subscribe(UPDATE_EVENT, this.onUpdateEvent.bind(this));
 
-			// arm app triggers
 			this.$buttons.forEach(button => {
 
 				button.classList.add('cursor-pointer')
 
 				button.addEventListener('click', e => {
 					e.preventDefault();
-					
-					const code = e.currentTarget.getAttribute(ATTR_BUTTON_OPEN);
-					if(typeof code === 'string' && code.length == 3) {
-						this.load(code);
+
+					const id = e.currentTarget.getAttribute(ATTR_BUTTON_OPEN);
+					if(typeof id === 'string' && id.length == 3) {
+						PubSub.publish(UPDATE_EVENT, id);
 					} else {
-						console.error('No app code present on target');
+						console.error('No app id present on target');
 					}
-				})
+
+				});
 			});
 		}
 	}
