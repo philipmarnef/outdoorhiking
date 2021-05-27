@@ -1,5 +1,6 @@
 import PubSub from 'pubsub-js';
 import Map from './map.js';
+import Player from './player.js';
 
 const URL = `/a/`,
 			ATTR_CONTAINER = 'data-app',
@@ -55,6 +56,9 @@ export default function App () {
 			// set audio player source
 			const $source = document.querySelector(`[${ATTR_AUDIO_SRC}]`);
 			if($source && json.audiofile) $source.src = json.audiofile;
+
+			// set up player
+			if(!this.hasOwnProperty('player')) this.player = new Player();
 
 			// open app
 			this.open();

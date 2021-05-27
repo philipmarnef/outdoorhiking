@@ -103,12 +103,18 @@
 							<div id="app_map" class="absolute inset-0 w-full h-full border border-black bg-red"></div>
 					</div>
 				</section>
-				<div class="player w-full">
-					<button data-player-control="rewind">rewind</button>
-					<button data-player-control="play">play</button>
+				<div class="player w-full mt-ws-half">
 					<audio data-player-audio>
 						<source src="" type="audio/mpeg" data-player-audio-src/>
 					</audio>
+					<div class="player-buttons flex flex-wrap justify-between w-full">
+						<button class="player-button player-button-rewind" data-player-control="rewind">rewind</button>
+						<button class="player-button player-button-play mx-10" data-player-control="play">play</button>
+						<span class="player-button landscape:hidden"></span>
+						<div class="player-seek w-full landscape:w-auto flex-grow mt-ws-half bg-transparent border border-t-0 border-black">
+							<div class="player-seek-progress" data-player-control="seek"></div>
+						</div>
+					</div>
 				</div>
 			</div>
 		</section>

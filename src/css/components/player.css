@@ -1,0 +1,38 @@
+@layer components {
+	.player-button {
+		width: calc(12 * var(--vw, 1vw));
+		height: calc(12 * var(--vw, 1vw));
+		overflow: hidden;
+		text-indent: -9999px;
+		background-repeat: no-repeat;
+		background-position: 50% 50%;
+		background-size: contain;
+	}
+
+	.player-button-rewind {
+		background-image: url('../images/rewind.svg');
+	}
+
+	.player-button-play {
+		background-image: url('../images/play.svg');
+	}
+
+	.player-seek {
+		height: calc(5 * var(--vw, 1vw));
+	}
+
+	.player-seek-progress {
+		height: 100%;
+	}
+
+	@screen landscape {
+		.player-button {
+			max-width: 3rem;
+			max-height: 3rem;
+		}
+
+		.player-seek {
+			max-height: 1.5rem;
+		}
+	}
+}

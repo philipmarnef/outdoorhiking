@@ -5,6 +5,10 @@
 	transform: translateZ(0);
 }
 
+[data-app-open] * {
+	cursor: pointer;
+}
+
 [data-app-close] {
 	position: relative;
 	display: block;
