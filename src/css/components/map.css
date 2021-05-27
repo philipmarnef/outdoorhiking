@@ -74,9 +74,15 @@
 }
 
 .leaflet-container .leaflet-control-attribution {
-	@apply text-black bg-red border-black border-l border-t;
+	@apply text-xs text-black bg-red border-black border-t;
 }
 
 .leaflet-container .leaflet-control-attribution a {
 	@apply underline;
+}
+
+@screen landscape {
+	.leaflet-container .leaflet-control-attribution {
+		@apply border-l;
+	}
 }

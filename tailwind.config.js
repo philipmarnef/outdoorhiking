@@ -22,6 +22,7 @@ module.exports = {
       sans: ['helvetica', 'arial', 'sans-serif'],
     },
     fontSize: {
+      xs: ['0.625rem', '0.94rem'],
       sm: ['0.75rem', '1.08rem'],
       base: ['1.125rem', '1.375rem'],
       lg: ['1.6875rem', '2.0625rem'],

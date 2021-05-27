@@ -5,7 +5,7 @@
 					url('../fonts/font-subset.woff') format("woff");
 	}
 
-	html {
+	body {
 		@apply font-sans text-base;
 	}
 }
