@@ -65,6 +65,7 @@ module.exports = {
       screens: {
         '2xl': '1400px',
         'landscape': {'raw': '(orientation: landscape)'},
+        'tall': {'raw': '(max-aspect-ratio: 5/9)'},
       },  
       spacing: {
         '80': '20rem',

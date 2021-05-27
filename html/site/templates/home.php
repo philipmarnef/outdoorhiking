@@ -14,10 +14,11 @@
 			<div class="flex justify-center items-center w-full h-full px-ws">
 				<div class="poster-image relative w-full h-full"></div>
 			</div>
-			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster divide-y-2 divide-black">
-				<li class="leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
-				<li class="leading-none"><span class="inline-block w-3/12">B:</span><span>Middelheimpark</span></li>
-				<li class="leading-none"><span class="inline-block w-3/12">C:</span><span>Park Vogelenzang</span></li>
+			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster">
+				<li class="hidden tall:block landscape:block leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
+				<li class="hidden tall:block landscape:block leading-none border-black border-t-2"><span class="inline-block w-3/12">B:</span><span>Middelheimpark</span></li>
+				<li class="hidden tall:block landscape:block leading-none border-black border-t-2"><span class="inline-block w-3/12">C:</span><span>Park Vogelenzang</span></li>
+				<li class="tall:hidden landscape:hidden text-center">Nachtegalenpark</li>
 			</ul>
 		</section>
 
