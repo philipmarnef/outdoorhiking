@@ -1,7 +1,7 @@
 @layer components {
 	.player-button {
-		width: calc(12 * var(--vw, 1vw));
-		height: calc(12 * var(--vw, 1vw));
+		width: 2.5rem;
+		height: 2.5rem;
 		overflow: hidden;
 		text-indent: -9999px;
 		background-repeat: no-repeat;
@@ -17,22 +17,56 @@
 		background-image: url('../images/play.svg');
 	}
 
+	.player-button-pause {
+		background-image: url('../images/pause.svg');
+	}
+
 	.player-seek {
-		height: calc(5 * var(--vw, 1vw));
+		@apply relative;
+		height: 1rem;
+	}
+
+	.player-seek::before,
+	.player-seek::after {
+		@apply absolute top-0 block w-0.5 h-full bg-black;
+		content: "";
+	}
+
+	.player-seek::before {
+		left: 0;
+	}
+
+	.player-seek::after {
+		right: 0;
 	}
 
 	.player-seek-progress {
-		height: 100%;
+		@apply h-full bg-transparent;
+		width: calc(100% + 1rem);
+		margin-right: -0.5rem;
+		margin-left: -0.5rem;
+		-webkit-appearance: none;
 	}
 
-	@screen landscape {
-		.player-button {
-			max-width: 3rem;
-			max-height: 3rem;
-		}
-
-		.player-seek {
-			max-height: 1.5rem;
-		}
+	.player-seek-progress:focus {
+		outline: none;
 	}
+
+	.player-seek-progress::-ms-track {
+		@apply w-full text-transparent border-transparent bg-transparent cursor-pointer;
+	}
+
+	.player-seek-progress::-webkit-slider-thumb {
+		@apply box-content w-0.5 h-full py-0 px-2 bg-clip-content bg-black rounded-none border-0 cursor-pointer;
+		-webkit-appearance: none;
+	}
+
+	.player-seek-progress::-moz-range-thumb {
+		@apply box-content w-0.5 h-full py-0 px-2 bg-clip-content bg-black rounded-none border-0 cursor-pointer;
+	}
+
+	.player-seek-progress::-ms-thumb {
+		@apply box-content w-0.5 h-full py-0 px-2 bg-clip-content bg-black rounded-none border-0 cursor-pointer;
+	}
+
 }

@@ -1,3 +1,5 @@
-html, body {
-	overscroll-behavior-y: none;
+@layer base {
+	html, body {
+		overscroll-behavior-y: none;
+	}
 }

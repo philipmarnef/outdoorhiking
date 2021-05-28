@@ -23,7 +23,7 @@
 		</section>
 
 		<section class="relative landscape:w-1/2 landscape:left-1/2 z-2 pt-1 landscape:pt-0">
-			<div class="mt-vh landscape:mt-0 p-ws bg-green">
+			<div class="min-h-screen mt-vh landscape:mt-0 p-ws bg-green">
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
 					<div class="relative pl-10 mt-lb">
@@ -84,14 +84,14 @@
 					<h4 data-app-slot="title">–</h4>
 					<nav>
 						<ul class="flex justify-between">
-							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="info">over</a></li>
+							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="text">over</a></li>
 							<li><a class="inline-block border-black cursor-default" href="#app_map" data-app-view="map">kaart</a></li>
 							<li><a class="inline-block border-b border-black" href="#app_help" data-app-view="help">help</a></li>
 						</ul>
 					</nav>
 				</header>
 				<section class="relative w-full h-full">
-					<div id="app_info" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="info">
+					<div id="app_info" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="text">
 					</div>
 					<div id="app_help" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="help">
 						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
@@ -100,19 +100,23 @@
 						</article>
 					</div>
 					<div class="bg-red absolute inset-0 z-100 w-full h-full" data-app-slot="map">
-							<div id="app_map" class="absolute inset-0 w-full h-full border border-black bg-red"></div>
+							<div id="app_map" class="absolute inset-0 w-full h-full border-black border-2 bg-red"></div>
 					</div>
 				</section>
-				<div class="player w-full mt-ws-half">
+				<div class="player w-full mt-ws-half landscape:mt-ws">
 					<audio data-player-audio>
-						<source src="" type="audio/mpeg" data-player-audio-src/>
 					</audio>
-					<div class="player-buttons flex flex-wrap justify-between w-full">
+					<div class="player-buttons flex flex-wrap justify-between w-full text-base leading-none">
 						<button class="player-button player-button-rewind" data-player-control="rewind">rewind</button>
-						<button class="player-button player-button-play mx-10" data-player-control="play">play</button>
+						<button class="player-button player-button-play mx-10" data-player-control="playpause">play</button>
 						<span class="player-button landscape:hidden"></span>
-						<div class="player-seek w-full landscape:w-auto flex-grow mt-ws-half bg-transparent border border-t-0 border-black">
-							<div class="player-seek-progress" data-player-control="seek"></div>
+						<div class="w-full landscape:w-auto flex-grow">
+							<div class="player-seek w-full mt-ws-half landscape:mt-0 bg-transparent border-black">
+								<input class="player-seek-progress" type="range" min="0" max="100" value="0" step="1" data-player-control="seek" >
+							</div>
+							<div class="flex justify-between w-full pt-2 border-black border-t-2">
+								<span data-player-control="currentTime">00:00</span><span data-player-control="totalTime">00:00</span>
+							</div>
 						</div>
 					</div>
 				</div>

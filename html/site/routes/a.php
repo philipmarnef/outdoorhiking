@@ -38,7 +38,7 @@ return [
 			'num' => str_pad($page->num(), 2, '0', STR_PAD_LEFT),
 			'artist' => $page->artist()->value(),
 			'title' => $page->audiotitle()->value(),
-			'text' => $page->text()->kt()->value(),
+			'text' => $page->text()->kt()->toString(),
 			'audiofile' => $audiofile,
 			'm' => $page->minutes()->toInt(),
 			's' => $page->seconds()->toInt(),

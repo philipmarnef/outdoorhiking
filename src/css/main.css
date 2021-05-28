@@ -7,6 +7,7 @@
 @import "tailwindcss/utilities";
 
 @import "base/body.css";
+@import "base/focus.css";
 @import "base/typography.css";
 @import "components/poster.css";
 @import "components/app.css";

@@ -1,0 +1,11 @@
+@layer base {
+	button:focus {
+		outline: none;
+		border: 0;
+	}
+
+	button:focus-visible {
+		outline: 1px dotted black;
+		outline-offset: 2px;
+	}
+}

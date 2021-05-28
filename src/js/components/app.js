@@ -9,7 +9,6 @@ const URL = `/a/`,
 			ATTR_NAVIGATION = 'data-app-view',
 			ATTR_SLOT = 'data-app-slot',
 			ATTR_AUDIO = 'data-player-audio',
-			ATTR_AUDIO_SRC = 'data-player-audio-src',
 			UPDATE_EVENT = 'artwork-change';
 
 export default function App () {
@@ -41,10 +40,10 @@ export default function App () {
 
 		render (json) {
 			// fill slots
-			['num', 'artist', 'title'].forEach(key => {
+			['num', 'artist', 'title', 'text'].forEach(key => {
 				const $e = document.querySelector(`[${ATTR_SLOT}=${key}]`);
 				if($e) {
-					$e.textContent = json[key];
+					$e.innerHTML = json[key];
 				}
 			});
 
@@ -54,8 +53,8 @@ export default function App () {
 			this.map.selectMarker(json.id);
 
 			// set audio player source
-			const $source = document.querySelector(`[${ATTR_AUDIO_SRC}]`);
-			if($source && json.audiofile) $source.src = json.audiofile;
+			const $audio = document.querySelector(`[${ATTR_AUDIO}]`);
+			if($audio && json.audiofile) $audio.src = json.audiofile;
 
 			// set up player
 			if(!this.hasOwnProperty('player')) this.player = new Player();
@@ -69,6 +68,8 @@ export default function App () {
 
 		open () {
 			this.$container.style.left = '0';
+			// always reset to the map view
+			this.updateNav('map');
 		},
 
 		close () {
@@ -78,6 +79,28 @@ export default function App () {
 
 		onUpdateEvent (msg, id) {
 			this.load(id);
+		},
+
+		updateNav (linkOrSlotId) {
+			let $link = linkOrSlotId;
+			if(typeof linkOrSlotId === 'string') {
+				$link = document.querySelector(`[${ATTR_NAVIGATION}=${linkOrSlotId}]`);
+			}
+
+			if($link) {
+				// reset nav
+				this.$nav.forEach($l => {
+					$l.classList.add('border-b');
+					$l.classList.remove('cursor-default');
+				});
+				// style active link
+				$link.classList.remove('border-b');
+				$link.classList.add('cursor-default');
+				// show linked content
+				const slot = $link.getAttribute(ATTR_NAVIGATION);
+				const $info = document.querySelector(`[${ATTR_SLOT}=${slot}]`);
+				$info.parentElement.appendChild($info);
+			}
 		},
 
 		updateUrl(id) {
@@ -99,19 +122,7 @@ export default function App () {
 			this.$nav.forEach($link => {
 				$link.addEventListener('click', e => {
 					e.preventDefault();
-
-					// reset nav
-					this.$nav.forEach($l => {
-						$l.classList.add('border-b');
-						$l.classList.remove('cursor-default');
-					});
-					// style active link
-					e.currentTarget.classList.remove('border-b');
-					e.currentTarget.classList.add('cursor-default');
-					// show linked content
-					const slot = e.currentTarget.getAttribute(ATTR_NAVIGATION);
-					const $info = document.querySelector(`[${ATTR_SLOT}=${slot}]`);
-					$info.parentElement.appendChild($info);
+					this.updateNav(e.currentTarget);
 				});
 			});
 

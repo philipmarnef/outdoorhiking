@@ -11,6 +11,7 @@ module.exports = {
   },
   theme: {
     colors: {
+      transparent: 'transparent',
       red: "#ff5c69",
       auburn: "#944249",
       green: "#2ee6a8",
