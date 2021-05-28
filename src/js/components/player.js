@@ -22,39 +22,45 @@ export default function Player ()
 			const $totalTime = document.querySelector(`[${ATTR_CONTROL}=totalTime]`);
 
 			$audio.addEventListener('loadedmetadata', e => {
+				// set total time
 				$totalTime.textContent = secondsToClocktime($audio.duration);
-			});
 
-			if($playpause) $playpause.addEventListener('click', e => {
-				const playing = 'playing';
-				const paused = 'paused';
-				if($audio.getAttribute(ATTR_AUDIO) === playing) {
-					$audio.setAttribute(ATTR_AUDIO, paused);
-					$playpause.classList.remove(CLASS_PAUSE);
-					console.log('paused');
-					$audio.pause();
-				} else {
-					$audio.play();
-					$audio.setAttribute(ATTR_AUDIO, playing);
-					$playpause.classList.add(CLASS_PAUSE);
-					console.log('playing');
+				// play/pause button
+				if($playpause) $playpause.addEventListener('click', e => {
+					const playing = 'playing';
+					const paused = 'paused';
+					if($audio.getAttribute(ATTR_AUDIO) === playing) {
+						$audio.setAttribute(ATTR_AUDIO, paused);
+						$playpause.classList.remove(CLASS_PAUSE);
+						$audio.pause();
+					} else {
+						$audio.play();
+						$audio.setAttribute(ATTR_AUDIO, playing);
+						$playpause.classList.add(CLASS_PAUSE);
+					}
+				});
+	
+				// rewind button
+				if($rewind) $rewind.addEventListener('click', e => {
+					$audio.currentTime = 0;
+				});
+
+				// seek bar
+				if($seek) {
+					// update play head on user input
+					$seek.addEventListener('input', e => {
+						$audio.currentTime = $audio.duration * $seek.value / 100;
+					});
+	
+					// update while playing
+					$audio.addEventListener('timeupdate', e => {
+						$seek.value = parseInt(100 * $audio.currentTime / $audio.duration);
+						$currentTime.textContent = secondsToClocktime($audio.currentTime);
+					});
 				}
+	
 			});
 
-			if($rewind) $rewind.addEventListener('click', e => {
-				$audio.currentTime = 0;
-			});
-
-			if($seek) {
-				$seek.addEventListener('input', e => {
-					$audio.currentTime = $audio.duration * $seek.value / 100;
-				});
-
-				$audio.addEventListener('timeupdate', e => {
-					$seek.value = parseInt(100 * $audio.currentTime / $audio.duration);
-					$currentTime.textContent = secondsToClocktime($audio.currentTime);
-				});
-			}
 		},
 	};
 
