@@ -17,10 +17,6 @@
 		background-image: url('../images/play.svg');
 	}
 
-	.player-button-pause {
-		background-image: url('../images/pause.svg');
-	}
-
 	.player-seek {
 		@apply relative h-4;
 	}
@@ -69,3 +65,8 @@
 	}
 
 }
+
+.player-button-play.player-button-pause {
+	background-image: url('../images/pause.svg');
+}
+
