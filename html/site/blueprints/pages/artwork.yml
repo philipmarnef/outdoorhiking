@@ -69,7 +69,7 @@ tabs:
                   nl: Url code
                   en: Url code
                 type: text
-                before: "https://outdoorhiking.be/a/"
+                before: "https://outdoorhiking.be/q/"
                 max: 3
                 min: 3
                 disabled: true
