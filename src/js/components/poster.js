@@ -1,5 +1,6 @@
-const MAX_RATIO = 0.75;
-const CLASS_LANDSCAPE = 'horizontal';
+const MAX_RATIO = 0.75,
+			RESIZE_THRESHOLD = 480,
+			CLASS_LANDSCAPE = 'horizontal';
 
 export default function Poster (selector = '.poster-image')
 {
@@ -12,6 +13,12 @@ export default function Poster (selector = '.poster-image')
 		poster: null,
 
 		resize () {
+			const w = window.innerWidth;
+
+			// don't resize when the mobile browser UI changes
+			if(this.w < RESIZE_THRESHOLD && w < RESIZE_THRESHOLD ) return;
+
+			this.w = w;
 			this.reset();
 
 			const r = getRatio(this.poster);

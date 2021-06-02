@@ -1,5 +1,17 @@
 @layer base {
 	html, body {
+		position: fixed;
+		overflow: hidden;
 		overscroll-behavior-y: none;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	body > main {
+		width: 100vw;
+		height: calc(100 * var(--vh, 1vh));
+		overflow-x: hidden;
+		overflow-y: scroll;
+		overscroll-behavior-y: none;
+		-webkit-overflow-scrolling: touch;
 	}
 }

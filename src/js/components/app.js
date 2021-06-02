@@ -67,14 +67,13 @@ export default function App () {
 		},
 
 		open () {
-			this.$container.style.left = '0';
+			document.documentElement.classList.add('app-is-open');
 			// always reset to the map view
 			this.updateNav('map');
 		},
-
+		
 		close () {
-			console.log('close');
-			this.$container.style.left = null;
+			document.documentElement.classList.remove('app-is-open');
 		},
 
 		onUpdateEvent (msg, id) {

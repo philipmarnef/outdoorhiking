@@ -1,0 +1,23 @@
+.info-section {
+	left: var(--ws-half);
+	width: calc(100% - var(--ws-half));
+	transition: left 0.4s ease-out;
+	will-change: left;
+	overflow-behavior-y: none;
+	-webkit-overflow-scrolling: touch;
+}
+
+.app-is-open .info-section {
+	left: 100%;
+}
+
+@screen landscape {
+	.info-section {
+		left: calc(50% + var(--ws-half));
+		width: calc(50% - var(--ws-half));
+	}
+
+	.app-is-open .info-section {
+		left: calc(50% + var(--ws-half));
+	}
+}

@@ -2,12 +2,12 @@
 <html lang="<?= $kirby->languageCode() ?>">
 <?= snippet('head') ?>
 
-<body class="text-black bg-white">
+<body class="text-black bg-red">
 
 	<main class="relative">
 
-		<section class="fixed flex flex-col w-full landscape:w-6/12 h-screen">
-			<header class="z-100 flex-grow-0 flex-shrink w-full px-ws pt-4 pb-2 text-poster bg-white">
+		<section class="poster-section fixed top-0 z-10 flex flex-col h-screen bg-white">
+			<header class="flex-grow-0 flex-shrink w-full px-ws pt-4 pb-2 text-poster bg-white">
 				<h1>Outdoor Hiking with Sound &ndash;<br>&amp; Other Fireworks</h1>
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
 			</header>
@@ -22,7 +22,7 @@
 			</ul>
 		</section>
 
-		<section class="relative landscape:w-1/2 landscape:left-1/2 z-2 pt-1 landscape:pt-0">
+		<section class="info-section fixed top-0 z-20 w-full h-screen overflow-y-auto">
 			<div class="min-h-screen mt-vh landscape:mt-0 p-ws bg-green">
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
@@ -74,7 +74,7 @@
 			</div>
 		</section>
 
-		<section class="fixed inset-0 left-full landscape:left-1/2 z-3 landscape:z-1 w-full landscape:w-1/2 h-screen p-ws bg-red" data-app>
+		<section class="app-section fixed z-0 h-screen p-ws" data-app>
 			<div class="flex flex-col h-full lg:text-lg">
 				<header class="w-full mb-ws-half leading-snug">
 					<div class="flex justify-between items-start">
@@ -90,19 +90,19 @@
 						</ul>
 					</nav>
 				</header>
-				<section class="relative w-full h-full">
-					<div id="app_info" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="text">
+				<div class="relative w-full h-full">
+					<div id="app_info" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-slot="text">
 					</div>
-					<div id="app_help" class="bg-red absolute inset-0 z-100 w-full h-full overflow-hidden" data-app-slot="help">
+					<div id="app_help" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-slot="help">
 						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
 							<?= $page->intro()->kt() ?>
 							<?= $page->info()->kt() ?>
 						</article>
 					</div>
-					<div class="bg-red absolute inset-0 z-100 w-full h-full" data-app-slot="map">
+					<div class="bg-red absolute inset-0 z-2 w-full h-full" data-app-slot="map">
 							<div id="app_map" class="absolute inset-0 w-full h-full border-black border-2 bg-red"></div>
 					</div>
-				</section>
+				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
 					<audio data-player-audio>
 					</audio>

@@ -1,8 +1,5 @@
-[data-app] {
-	transition: left 0.4s ease-out;
-	/* force hardware acceleration */
-	will-change: left;
-	transform: translateZ(0);
+.app-section {
+	width: 100%;
 }
 
 [data-app-open] * {
@@ -36,6 +33,10 @@
 }
 
 @screen landscape {
+	.app-section {
+		width: calc(50% - var(--ws));
+	}
+
 	[data-app-close]::before,
 	[data-app-close]::after {
 		left: 0;
