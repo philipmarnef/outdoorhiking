@@ -1,4 +1,5 @@
 .DS_Store
-storage/cache
-storage/sessions
+storage
 public/media
+content
+site/config/.license
