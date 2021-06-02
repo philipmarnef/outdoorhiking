@@ -26,14 +26,14 @@
 			<div class="min-h-screen mt-vh landscape:mt-0 p-ws bg-green">
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
-					<div class="relative pl-10 mt-lb">
-						<figure class="absolute top-0 left-0 -ml-2">
+					<div class="relative pb-lb pl-12 mt-lb">
+						<figure class="absolute top-0 left-0">
 							<img class="w-9" src="/assets/images/info.svg" alt="">
 						</figure>
 						<?= $page->info()->kt() ?>
 					</div>
 				</div>
-				<h3 class="landscape:hidden pl-10 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
+				<h3 class="landscape:hidden pl-12 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
 				<div class="my-lb">
 					<table class="w-full lg:text-lg">
 					<?php foreach($page->children() as $work): ?>
