@@ -2,8 +2,12 @@ const MAX_RATIO = 0.75,
 			RESIZE_THRESHOLD = 480,
 			CLASS_LANDSCAPE = 'horizontal';
 
-export default function Poster (selector = '.poster-image')
+export default function Poster ( options = { 
+	imageAttribute: 'data-poster-image',
+	scrollerSelector: '.info-section',
+})
 {
+	const { imageAttribute, scrollerSelector } = options;
 
 	function getRatio($e) {
 		return $e.offsetWidth / $e.offsetHeight;
@@ -11,6 +15,7 @@ export default function Poster (selector = '.poster-image')
 
 	const p = {
 		poster: null,
+		scroller: null,
 
 		resize () {
 			const w = window.innerWidth;
@@ -44,8 +49,17 @@ export default function Poster (selector = '.poster-image')
 		},
 
 		init () {
-			this.poster = this.poster || document.querySelector(selector);
+			this.poster = this.poster || document.querySelector(`[${imageAttribute}]`);
 			if(this.poster) this.resize();
+
+			this.scroller = this.scroller || document.querySelector(scrollerSelector);
+			if(this.scroller) {
+				const scrollMax = this.scroller.scrollHeight - this.scroller.clientHeight;
+				this.scroller.addEventListener('scroll', e => {
+					const scrollTen = Math.ceil(this.scroller.scrollTop / scrollMax * 10);
+					this.poster.setAttribute(imageAttribute, scrollTen);
+				})
+			}
 		}
 	}
 

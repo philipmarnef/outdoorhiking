@@ -23,6 +23,16 @@
 	background: url("../images/OH-line-vertical.svg") no-repeat 50% 50% / 100% 100%;
 }
 
+.poster-image[data-poster-image="2"] { background-image: url("../images/OH-line-vertical-2.svg"); }
+.poster-image[data-poster-image="3"] { background-image: url("../images/OH-line-vertical-3.svg"); }
+.poster-image[data-poster-image="4"] { background-image: url("../images/OH-line-vertical-4.svg"); }
+.poster-image[data-poster-image="5"] { background-image: url("../images/OH-line-vertical-5.svg"); }
+.poster-image[data-poster-image="6"] { background-image: url("../images/OH-line-vertical-6.svg"); }
+.poster-image[data-poster-image="7"] { background-image: url("../images/OH-line-vertical-7.svg"); }
+.poster-image[data-poster-image="8"] { background-image: url("../images/OH-line-vertical-8.svg"); }
+.poster-image[data-poster-image="9"] { background-image: url("../images/OH-line-vertical-9.svg"); }
+.poster-image[data-poster-image="10"] { background-image: url("../images/OH-line-vertical-10.svg"); }
+
 .poster-image::before,
 .poster-image::after {
 	position: absolute;
@@ -45,6 +55,16 @@
 	width: 100%;
 	background: url("../images/OH-line-horizontal.svg") no-repeat 50% 50% / 100% 100%;
 }
+
+.poster-image.horizontal[data-poster-image="2"] { background-image: url("../images/OH-line-horizontal-2.svg"); }
+.poster-image.horizontal[data-poster-image="3"] { background-image: url("../images/OH-line-horizontal-3.svg"); }
+.poster-image.horizontal[data-poster-image="4"] { background-image: url("../images/OH-line-horizontal-4.svg"); }
+.poster-image.horizontal[data-poster-image="5"] { background-image: url("../images/OH-line-horizontal-5.svg"); }
+.poster-image.horizontal[data-poster-image="6"] { background-image: url("../images/OH-line-horizontal-6.svg"); }
+.poster-image.horizontal[data-poster-image="7"] { background-image: url("../images/OH-line-horizontal-7.svg"); }
+.poster-image.horizontal[data-poster-image="8"] { background-image: url("../images/OH-line-horizontal-8.svg"); }
+.poster-image.horizontal[data-poster-image="9"] { background-image: url("../images/OH-line-horizontal-9.svg"); }
+.poster-image.horizontal[data-poster-image="10"] { background-image: url("../images/OH-line-horizontal-10.svg"); }
 
 .poster-image.horizontal::before,
 .poster-image.horizontal::after {

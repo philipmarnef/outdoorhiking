@@ -12,7 +12,7 @@
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
 			</header>
 			<div class="flex justify-center items-center w-full h-full px-ws">
-				<div class="poster-image relative w-full h-full"></div>
+				<div class="poster-image relative w-full h-full" data-poster-image></div>
 			</div>
 			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster">
 				<li class="hidden tall:block landscape:block leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
