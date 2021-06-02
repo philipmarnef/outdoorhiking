@@ -2,7 +2,7 @@ import PubSub from 'pubsub-js';
 import Map from './map.js';
 import Player from './player.js';
 
-const URL = `/a/`,
+const API_URL = `/a/`,
 			ATTR_CONTAINER = 'data-app',
 			ATTR_BUTTON_OPEN = 'data-app-open',
 			ATTR_BUTTON_CLOSE = 'data-app-close',
@@ -24,7 +24,7 @@ export default function App () {
 			}
 			// not loaded? fetch data
 			else {
-				const url = window.location.href.replace(/q\/[a-z,A-Z,0-9]{3}(#.*)?/, '') + URL + id;
+				const url = window.location.href.replace(/q\/[a-z,A-Z,0-9]{3}(#.*)?/, '') + API_URL + id;
 	
 				fetch(url)
 					.then(res => res.json())
@@ -127,6 +127,12 @@ export default function App () {
 
 			// listen for changes
 			PubSub.subscribe(UPDATE_EVENT, this.onUpdateEvent.bind(this));
+
+			// if the url has a code, update the view
+			if(window.location.pathname.indexOf('/q/') >= -1) {
+				const id = window.location.pathname.slice(-3);
+				PubSub.publish(UPDATE_EVENT, id);
+			}
 
 			this.$buttons.forEach(button => {
 
