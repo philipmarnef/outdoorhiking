@@ -1,6 +1,6 @@
 .info-section {
-	left: var(--ws-half);
-	width: calc(100% - var(--ws-half));
+	left: var(--ws);
+	width: calc(100% - var(--ws));
 	transition: left 0.4s ease-out;
 	will-change: left;
 	overflow-behavior-y: none;
