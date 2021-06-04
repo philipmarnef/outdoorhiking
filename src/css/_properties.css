@@ -1,4 +1,8 @@
 :root {
+	--red: #ff5c69;
+	--green: #2ee6a8;
+	--black: #282829;
+
 	--ws: 5vw;
 	--ws-half: 2.5vw;
 }
