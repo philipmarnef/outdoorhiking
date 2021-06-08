@@ -64,9 +64,41 @@
 		@apply box-content w-0.5 h-4 py-0 px-2 bg-clip-content bg-black rounded-none border-0 cursor-pointer;
 	}
 
+	.player-time {
+		@apply border-black border-t-2;
+	}
 }
 
 .player-button-play.player-button-pause {
 	background-image: url('../images/pause.svg');
 }
 
+.player audio[src=""] + .player-buttons .player-button-rewind {
+	background-image: url('../images/rewind-disabled.svg');
+	cursor: default;
+}
+
+.player audio[src=""] + .player-buttons .player-button-play {
+	background-image: url('../images/play-disabled.svg');
+	cursor: default;
+}
+
+.player audio[src=""] + .player-buttons .player-button-play.player-button-pause {
+	background-image: url('../images/pause-disabled.svg');
+	cursor: default;
+}
+
+.player audio[src=""] + .player-buttons .player-seek::before,
+.player audio[src=""] + .player-buttons .player-seek::after,
+.player audio[src=""] + .player-buttons .player-seek-progress {
+	display: none;
+}
+
+.player audio[src=""] + .player-buttons .player-seek {
+	@apply border-dotted border-black border-2 border-t-0;
+	height: 1.125rem;
+}
+
+.player audio[src=""] + .player-buttons .player-time {
+	@apply border-0;
+}

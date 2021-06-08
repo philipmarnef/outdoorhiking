@@ -12,53 +12,85 @@ const secondsToClocktime = function (duration) {
 
 export default function Player ()
 {
+
+	const $audio = document.querySelector(`[${ATTR_AUDIO}]`);
+	const $playpause = document.querySelector(`[${ATTR_CONTROL}=playpause]`);
+	const $rewind = document.querySelector(`[${ATTR_CONTROL}=rewind]`);
+	const $seek = document.querySelector(`[${ATTR_CONTROL}=seek]`);
+	const $currentTime = document.querySelector(`[${ATTR_CONTROL}=currentTime]`);
+	const $totalTime = document.querySelector(`[${ATTR_CONTROL}=totalTime]`);
+
 	const p = {
+		listening: false,
+
+		reset () {
+			// reset play head
+			$audio.pause();
+			// pausing this way doesn't always fire the pause event :-(
+			if($playpause) $playpause.classList.remove(CLASS_PAUSE);
+
+			// rewind play head
+			$audio.currentTime = 0;
+			// set total time
+			$totalTime.textContent = $audio.duration ? secondsToClocktime($audio.duration) : '00:00';
+		},
+
 		init () {
-			const $audio = document.querySelector(`[${ATTR_AUDIO}]`);
-			const $playpause = document.querySelector(`[${ATTR_CONTROL}=playpause]`);
-			const $rewind = document.querySelector(`[${ATTR_CONTROL}=rewind]`);
-			const $seek = document.querySelector(`[${ATTR_CONTROL}=seek]`);
-			const $currentTime = document.querySelector(`[${ATTR_CONTROL}=currentTime]`);
-			const $totalTime = document.querySelector(`[${ATTR_CONTROL}=totalTime]`);
+
+			if(!$audio) return;
 
 			$audio.addEventListener('loadedmetadata', e => {
-				// set total time
-				$totalTime.textContent = secondsToClocktime($audio.duration);
 
-				// play/pause button
-				if($playpause) $playpause.addEventListener('click', e => {
-					const playing = 'playing';
-					const paused = 'paused';
-					if($audio.getAttribute(ATTR_AUDIO) === playing) {
-						$audio.setAttribute(ATTR_AUDIO, paused);
-						$playpause.classList.remove(CLASS_PAUSE);
-						$audio.pause();
-					} else {
-						$audio.play();
-						$audio.setAttribute(ATTR_AUDIO, playing);
-						$playpause.classList.add(CLASS_PAUSE);
+				this.reset();
+
+				// add control listeners only once!
+				if(!this.listening) {
+
+					// play/pause button
+					if($playpause) {
+
+						$playpause.addEventListener('click', e => {
+							if($audio.getAttribute(ATTR_AUDIO) !== 'disabled') {
+								if($audio.paused) {
+									$audio.play();
+								} else {
+									$audio.pause();
+								}
+							}
+						});
+
+						$audio.addEventListener('play', e => {
+							$playpause.classList.add(CLASS_PAUSE);
+						});
+						
+						$audio.addEventListener('pause', e => {
+							$playpause.classList.remove(CLASS_PAUSE);
+						});
+	
+					};
+		
+					// rewind button
+					if($rewind) $rewind.addEventListener('click', e => {
+						if($audio.getAttribute(ATTR_AUDIO) !== 'disabled') $audio.currentTime = 0;
+					});
+	
+					// seek bar
+					if($seek) {
+						// update play head on user input
+						$seek.addEventListener('input', e => {
+							$audio.currentTime = $audio.duration * $seek.value / 100;
+						});
+		
+						// update while playing
+						$audio.addEventListener('timeupdate', e => {
+							$seek.value = parseInt(100 * $audio.currentTime / $audio.duration);
+							$currentTime.textContent = secondsToClocktime($audio.currentTime);
+						});
 					}
-				});
-	
-				// rewind button
-				if($rewind) $rewind.addEventListener('click', e => {
-					$audio.currentTime = 0;
-				});
-
-				// seek bar
-				if($seek) {
-					// update play head on user input
-					$seek.addEventListener('input', e => {
-						$audio.currentTime = $audio.duration * $seek.value / 100;
-					});
-	
-					// update while playing
-					$audio.addEventListener('timeupdate', e => {
-						$seek.value = parseInt(100 * $audio.currentTime / $audio.duration);
-						$currentTime.textContent = secondsToClocktime($audio.currentTime);
-					});
+		
+					this.listening = true;
 				}
-	
+
 			});
 
 		},

@@ -53,12 +53,24 @@ export default function App () {
 			this.map.addMarkers(json.markers);
 			this.map.selectMarker(json.id);
 
-			// set audio player source
+			// set audio player
 			const $audio = document.querySelector(`[${ATTR_AUDIO}]`);
-			if($audio && json.audiofile) $audio.src = json.audiofile;
+			if($audio) {
+				// init player once
+				if(!this.hasOwnProperty('player')) this.player = new Player();
 
-			// set up player
-			if(!this.hasOwnProperty('player')) this.player = new Player();
+				// enable or disable
+				if(json.audiofile) {
+					// disable for now
+//					$audio.src = json.audiofile;
+//					$audio.load();
+					$audio.src = '';
+					this.player.reset();
+				} else {
+					$audio.src = '';
+					this.player.reset();
+				}
+			}
 
 			// open app
 			this.open();

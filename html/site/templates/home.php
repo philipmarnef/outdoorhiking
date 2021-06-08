@@ -104,8 +104,10 @@
 					</div>
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
-					<audio data-player-audio>
-					</audio>
+					<div class="player-message bodytext text-base">
+						<p class="mb-ws">De geluidswerken kunnen pas beluisterd worden vanaf 26.06.2021</p>
+					</div>
+					<audio data-player-audio></audio>
 					<div class="player-buttons flex flex-wrap justify-between w-full text-base leading-none">
 						<button class="player-button player-button-rewind" data-player-control="rewind">rewind</button>
 						<button class="player-button player-button-play mx-10" data-player-control="playpause">play</button>
@@ -114,7 +116,7 @@
 							<div class="player-seek w-full mt-ws-half landscape:mt-0 bg-transparent border-black">
 								<input class="player-seek-progress" type="range" min="0" max="100" value="0" step="1" data-player-control="seek" >
 							</div>
-							<div class="flex justify-between w-full pt-2 border-black border-t-2">
+							<div class="player-time flex justify-between w-full pt-2">
 								<span data-player-control="currentTime">00:00</span><span data-player-control="totalTime">00:00</span>
 							</div>
 						</div>
