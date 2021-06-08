@@ -1,0 +1,101 @@
+title:
+  en: Location marker
+  nl: Locatiepin
+
+status:
+  draft: 
+    label:
+      nl: Concept
+      en: Draft
+  unlisted:
+    label:
+      nl: Gepubliceerd
+      en: Published
+
+options:
+  changeTemplate: false
+
+tabs:
+  fields:
+    label:
+      nl: Info
+      en: Info
+    icon: page
+    columns:
+    # column
+      meta:
+        width: 1/3
+        sections:
+          metafields:
+            type: fields
+            fields:
+              numcode:
+                label:
+                  nl: Pin code (A, B,...) 
+                  en: Marker code (A, B,...)
+                type: text
+                required: true
+              markertitle:
+                label:
+                  nl: Titel van de locatie
+                  en: Title of the location
+                type: text
+                required: true
+              playertitle:
+                label:
+                  nl: Ondertitel van de locatie
+                  en: Subtitle of the location
+                type: text
+              appcode:
+                label:
+                  nl: Url code
+                  en: Url code
+                type: text
+                before: "https://outdoorhiking.be/q/"
+                max: 3
+                min: 3
+                disabled: true
+                translate: false
+
+    # column
+      text:
+        width: 2/3
+        sections:
+          textfields:
+            type: fields
+            fields:
+              text:
+                label:
+                  nl: Tekst
+                  en: Text
+                type: markdown
+                size: huge
+# tab
+  geo:
+    label:
+      nl: Locatie
+      en: Location
+    icon: map
+    sections:
+      geofields:
+        type: fields
+        fields:
+          location:
+            label: 
+              nl: Locatie
+              en: Location
+            type: locator
+            center:
+              lat: 51.180923215345445
+              lon: 4.412813186645509
+            default:
+              lat: '51.180923215345445'
+              lon: '4.412813186645509'
+              number: null
+              city: null
+              country: null
+              postcode: null
+              address: null
+            zoom:
+              default: 16
+            translate: false

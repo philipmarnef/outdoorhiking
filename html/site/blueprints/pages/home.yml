@@ -108,3 +108,34 @@ columns:
         templates:
           - artwork
         status: listed
+        text: "{{page.num}}: {{page.title}}"
+    # section
+      markerheadline:
+        type: fields
+        fields:
+          markerheadline:
+            label:
+              nl: Andere markers
+              en: Other markers
+            type: headline
+            numbered: false
+    # section
+      markerdrafts:
+        headline:
+          nl: Concepten
+          en: Drafts
+        type: pages
+        templates:
+          - marker
+        status: draft
+    # section
+      markers:
+        headline:
+          nl: Gepubliceerd
+          en: Published
+        type: pages
+        templates:
+          - marker
+        status: unlisted
+        sortBy: numcode asc
+        text: "{{page.numcode}}: {{page.apptitle}}"

@@ -78,10 +78,10 @@
 			<div class="flex flex-col h-full lg:text-lg">
 				<header class="w-full mb-ws-half leading-snug">
 					<div class="flex justify-between items-start">
-						<h3 class="flex justify-start"><span class="mr-ws" data-app-slot="num"></span><span data-app-slot="artist">–</span></h3>
+						<h3 class="flex justify-start"><span class="mr-ws" data-app-slot="num">00</span><span data-app-slot="markertitle">Start</span></h3>
 						<button data-app-close>sluit</button>
 					</div>
-					<h4 data-app-slot="title">–</h4>
+					<h4 data-app-slot="playertitle">&nbsp;</h4>
 					<nav>
 						<ul class="flex justify-between">
 							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="text">over</a></li>

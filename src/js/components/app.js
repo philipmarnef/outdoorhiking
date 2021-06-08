@@ -41,7 +41,7 @@ export default function App () {
 
 		render (json) {
 			// fill slots
-			['num', 'artist', 'title', 'text'].forEach(key => {
+			['num', 'markertitle', 'playertitle', 'text'].forEach(key => {
 				const $e = document.querySelector(`[${ATTR_SLOT}=${key}]`);
 				if($e) {
 					$e.innerHTML = json[key];
@@ -103,9 +103,17 @@ export default function App () {
 			}
 		},
 
-		updateUrl(id) {
+		updateUrl (id) {
 			const url = `${window.location.protocol}//${window.location.host}/q/${id}`;
-			window.history.pushState({}, '', url);
+
+			const marker = this.data[`_${id}`];
+			let title = 'Outdoor Hiking with Sound and Other Fireworks';
+			if(marker) {
+				title = `${marker.num} ${marker.markertitle} | ${title}`;
+			}
+
+			window.history.pushState({}, title, url);
+			document.title = title;
 		},
 
 		init () {
