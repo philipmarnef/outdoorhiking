@@ -133,6 +133,20 @@ export default function App () {
 				const id = window.location.pathname.slice(-3);
 				PubSub.publish(UPDATE_EVENT, id);
 			}
+			// click on the app border to open the app
+			this.$container.addEventListener('click', e => {
+				if(e.target === e.currentTarget) {
+					this.open();
+				}
+			});
+
+			// click on the poster to close the app
+			const poster = document.querySelector(SELECTOR_POSTER);
+			if(poster) {
+				poster.addEventListener('click', e => {
+					this.close();
+				});
+			}
 
 			this.$buttons.forEach(button => {
 
