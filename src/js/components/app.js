@@ -9,6 +9,7 @@ const API_URL = `/a/`,
 			ATTR_NAVIGATION = 'data-app-view',
 			ATTR_SLOT = 'data-app-slot',
 			ATTR_AUDIO = 'data-player-audio',
+			SELECTOR_POSTER = '.poster-section',
 			UPDATE_EVENT = 'artwork-change';
 
 export default function App () {
@@ -129,10 +130,11 @@ export default function App () {
 			PubSub.subscribe(UPDATE_EVENT, this.onUpdateEvent.bind(this));
 
 			// if the url has a code, update the view
-			if(window.location.pathname.indexOf('/q/') >= -1) {
+			if(window.location.pathname.indexOf('/q/') > -1) {
 				const id = window.location.pathname.slice(-3);
 				PubSub.publish(UPDATE_EVENT, id);
 			}
+
 			// click on the app border to open the app
 			this.$container.addEventListener('click', e => {
 				if(e.target === e.currentTarget) {
