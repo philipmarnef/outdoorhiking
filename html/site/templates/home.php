@@ -46,14 +46,14 @@
 					</table>
 				</div>
 				<footer class="grid grid-flow-row-dense grid-cols-2 xl:grid-cols-3 gap-3 xl:gap-5 text-sm">
-					<div>
+					<div class="space-y-lb">
 						<?= $page->credits()->kt() ?>
 					</div>
-					<div class="xl:col-start-3">
+					<div class="xl:col-start-3 space-y-lb">
 						<?= $page->thanks()->kt() ?>
 					</div>
 					<div class="col-span-2 xl:col-span-1 grid grid-cols-2 xl:flex flex-wrap items-between">
-						<div>
+						<div class="space-y-lb">
 							<?= $page->support()->kt() ?>
 						</div>
 						<div class="flex justify-between items-end xl:w-full">
