@@ -52,11 +52,16 @@ export default function Poster ( options = {
 			this.poster = this.poster || document.querySelector(`[${imageAttribute}]`);
 			if(this.poster) this.resize();
 
+			// listen on info section scroll
 			this.scroller = this.scroller || document.querySelector(scrollerSelector);
 			if(this.scroller) {
+				// max scroll amount
 				const scrollMax = this.scroller.scrollHeight - this.scroller.clientHeight;
 				this.scroller.addEventListener('scroll', e => {
-					const scrollTen = Math.ceil(this.scroller.scrollTop / scrollMax * 10);
+					// get scroll position on a scale of 1 to 10, twice
+					const scrollTen = Math.abs(Math.ceil(this.scroller.scrollTop / scrollMax * 21)  - 11);
+
+					// set scroll position on attribute (and change image with CSS)
 					this.poster.setAttribute(imageAttribute, scrollTen);
 				})
 			}

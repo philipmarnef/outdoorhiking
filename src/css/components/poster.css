@@ -36,7 +36,7 @@
 .poster-image::before,
 .poster-image::after {
 	position: absolute;
-	width: 100%;
+	width: 98.8%;
 	height: 100%;
 	top: 0;
 	right: 0;
@@ -44,12 +44,29 @@
 	left: 0;
 	display: block;
 	content: "";
-	background: url("../images/OH-spool-vertical.svg") no-repeat 0 0 / 98.8% auto;
+	background: url("../images/OH-reel-vertical.svg") no-repeat 0 0 / 100% auto;
+}
+
+.poster-image[data-poster-image="2"]::before,
+.poster-image[data-poster-image="4"]::before,
+.poster-image[data-poster-image="6"]::before,
+.poster-image[data-poster-image="8"]::before,
+.poster-image[data-poster-image="10"]::before {
+	transform: scale(-1, 1);
 }
 
 .poster-image::after {
-	transform: scaleY(-1);
+	transform: scale(1, -1);
 }
+
+.poster-image[data-poster-image="1"]::after,
+.poster-image[data-poster-image="3"]::after,
+.poster-image[data-poster-image="5"]::after,
+.poster-image[data-poster-image="7"]::after,
+.poster-image[data-poster-image="9"]::after {
+	transform: scale(-1, -1);
+}
+
 
 .poster-image.horizontal {
 	width: 100%;
@@ -68,11 +85,30 @@
 
 .poster-image.horizontal::before,
 .poster-image.horizontal::after {
-	background: url("../images/OH-spool-horizontal.svg") no-repeat 0 100% / auto 98.8%;
+	width: 100%;
+	height: 98.8%;
+	top: 1.2%;
+	background: url("../images/OH-reel-horizontal.svg") no-repeat 0 100% / auto 100%;
+}
+
+.poster-image.horizontal[data-poster-image="2"]::before,
+.poster-image.horizontal[data-poster-image="4"]::before,
+.poster-image.horizontal[data-poster-image="6"]::before,
+.poster-image.horizontal[data-poster-image="8"]::before,
+.poster-image.horizontal[data-poster-image="10"]::before {
+	transform: scale(1, -1);
 }
 
 .poster-image.horizontal::after {
 	transform: scale(-1, 1);
+}
+
+.poster-image.horizontal[data-poster-image="1"]::after,
+.poster-image.horizontal[data-poster-image="3"]::after,
+.poster-image.horizontal[data-poster-image="5"]::after,
+.poster-image.horizontal[data-poster-image="7"]::after,
+.poster-image.horizontal[data-poster-image="9"]::after {
+	transform: scale(-1, -1);
 }
 
 .poster-footer > * {
