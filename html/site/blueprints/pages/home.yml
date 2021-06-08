@@ -81,6 +81,20 @@ columns:
     width: 1/3
     sections:
     # section
+      defaultmarker:
+        type: fields
+        fields:
+          defaultmarker:
+            label:
+              nl: Standaardpin
+              en: Default marker
+            type: pages
+            multiple: false
+            query: page.children
+            help:
+              nl: Deze pin wordt standaard getoond op de kaart als de app wordt geopend zonder dat er een code is gescand of kunstenaar geklikt
+              en: This marker will be selected on the map if no code was scanned or no artist clicked
+    # section
       workheadline:
         type: fields
         fields:
@@ -138,4 +152,4 @@ columns:
           - marker
         status: unlisted
         sortBy: numcode asc
-        text: "{{page.numcode}}: {{page.apptitle}}"
+        text: "{{page.numcode}}: {{page.markertitle}}"

@@ -36,7 +36,7 @@
 				<h3 class="landscape:hidden pl-12 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
 				<div class="my-lb">
 					<table class="w-full lg:text-lg">
-					<?php foreach($page->children() as $work): ?>
+					<?php foreach($page->children()->template('artwork') as $work): ?>
 						<tr class="align-top" data-app-open="<?= $work->appcode() ?>">
 							<td class="w-10 lg:w-12 xl:w-16"><?= str_pad($work->num(), 2, '0', STR_PAD_LEFT) ?></td>
 							<td><?= $work->artist() ?></td>
@@ -74,14 +74,14 @@
 			</div>
 		</section>
 
-		<section class="app-section fixed z-0 h-screen p-ws" data-app>
+		<section class="app-section fixed z-0 h-screen p-ws" data-app="<?php if($page->defaultmarker()->isNotEmpty()) print $page->defaultmarker()->toPage()->appcode(); ?>">
 			<div class="flex flex-col h-full lg:text-lg">
 				<header class="w-full mb-ws-half leading-snug">
 					<div class="flex justify-between items-start">
 						<h3 class="flex justify-start"><span class="mr-ws" data-app-slot="num">00</span><span data-app-slot="markertitle">Start</span></h3>
 						<button data-app-close>sluit</button>
 					</div>
-					<h4 data-app-slot="playertitle">&nbsp;</h4>
+					<h4 data-app-slot="playertitle"></h4>
 					<nav>
 						<ul class="flex justify-between">
 							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="text">over</a></li>

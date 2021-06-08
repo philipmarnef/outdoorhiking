@@ -146,7 +146,17 @@ export default function App () {
 			// click on the app border to open the app
 			this.$container.addEventListener('click', e => {
 				if(e.target === e.currentTarget) {
-					this.open();
+					// no map yet? Try to load the default
+					if(!this.hasOwnProperty('map')) {
+						if(this.$container.getAttribute(ATTR_CONTAINER)) {
+							const id = this.$container.getAttribute(ATTR_CONTAINER);
+							PubSub.publish(UPDATE_EVENT, id);
+						}
+					}
+					// there is a map, open the app
+					else {
+						this.open();
+					}
 				}
 			});
 
