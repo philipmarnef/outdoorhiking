@@ -11,6 +11,31 @@
 	left: 100%;
 }
 
+.info-section [data-app-open] td:last-child {
+	@apply relative;
+}
+
+.info-section [data-app-open] td:last-child::after {
+	@apply absolute top-0 -right-4 block overflow-hidden text-center;
+	width: 1.22em;
+	height: 1.22em;
+	content: " > ";
+	text-indent: -9999px;
+	background: transparent url('../images/go.svg') no-repeat 50% 50% / contain;
+}
+
+.no-touch .info-section [data-app-open] td:last-child::after {
+	@apply hidden;
+}
+
+.no-touch .info-section [data-app-open]:hover td:last-child::after {
+	@apply block;
+}
+
+.no-touch .info-section [data-app-open]:hover td:nth-child(2n) {
+	@apply italic;
+}
+
 @screen landscape {
 	.info-section {
 		left: calc(50% + var(--ws-half));
@@ -19,5 +44,9 @@
 
 	.app-is-open .info-section {
 		left: calc(50% + var(--ws-half));
+	}
+
+	.info-section [data-app-open]::after {
+		right: -0.62em;
 	}
 }

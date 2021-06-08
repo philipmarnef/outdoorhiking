@@ -34,7 +34,7 @@
 					</div>
 				</div>
 				<h3 class="landscape:hidden pl-12 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
-				<div class="my-lb">
+				<div class="my-lb pr-4 landscape:pr-2">
 					<table class="w-full lg:text-lg">
 					<?php foreach($page->children()->template('artwork') as $work): ?>
 						<tr class="align-top" data-app-open="<?= $work->appcode() ?>">
