@@ -1,7 +1,7 @@
 <?php
 
 return [
-	'debug' => true,
+	'debug' => false,
 	'sylvainjule.locator.mapbox.id' => 'mapbox/outdoors-v11',
 //	'sylvainjulie.locator.mapbox.token' => 'pk.eyJ1IjoicGhpbGlwbWFybmVmIiwiYSI6ImNrcDJvcGY2cjA3bW8ydW1raGhjbDljYzIifQ.fOn-sV57EV3pVYllE5gPNQ',
 	'routes' => [
