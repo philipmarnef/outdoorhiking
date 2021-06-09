@@ -6,11 +6,17 @@ return [
 		$site = kirby()->site();
 
 		$home = $site->find('home');
-		$work = $home->children()->filterBy('appcode', $code)->first();
+		$page = $home->children()->filterBy('appcode', $code)->first();
 
 		$title = $site->title();
-		if(is_a($work, 'Kirby\Cms\Page')) {
-			$title = str_pad($work->num(), 2, '0', STR_PAD_LEFT) . ' ' . $work->artist() . ' – ' . $work->audiotitle() . ' | ' . $title;
+
+		if(is_a($page, 'Kirby\Cms\Page')) {
+			if($page->blueprint()->name() === 'pages/artwork') {
+				$title = str_pad($page->num(), 2, '0', STR_PAD_LEFT) . ' ' . $page->artist()->toString() . ' | ' . $title; 
+			}
+			if($page->blueprint()->name() === 'pages/marker') {
+				$title = $page->numcode()->toString() . ' ' . $page->markertitle()->toString() . ' | ' . $title;
+			}
 		};
 
 		return $home->render(['title' => $title]);
