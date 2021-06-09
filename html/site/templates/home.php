@@ -7,12 +7,9 @@
 	<main class="relative">
 
 		<section class="poster-section fixed top-0 z-10 flex flex-col h-screen bg-white">
-			<header class="flex-grow-0 flex-shrink w-full px-ws pt-4 pb-2 text-poster bg-white">
+			<header class="flex-grow-0 flex-shrink w-full px-ws pt-4 lg:pt-6 pb-2 text-poster bg-white">
 				<h1>Outdoor Hiking with Sound &ndash;<br>&amp; Other Fireworks</h1>
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
-				<nav class="absolute right-ws top-4 text-base">
-					<?= snippet('language-menu') ?>
-				</nav>
 			</header>
 			<div class="flex justify-center items-center w-full h-full px-ws">
 				<div class="poster-image relative w-full h-full" data-poster-image></div>
@@ -27,6 +24,9 @@
 
 		<section class="info-section fixed top-0 z-20 w-full h-screen overflow-y-auto">
 			<div class="min-h-screen mt-vh landscape:mt-0 p-ws bg-green">
+				<nav class="mb-ws-half text-sm lg:text-base">
+					<?= snippet('language-menu') ?>
+				</nav>
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
 					<div class="relative pb-lb pl-10 xl:pl-12 mt-lb">
@@ -87,23 +87,30 @@
 					<h4 data-app-slot="playertitle"></h4>
 					<nav>
 						<ul class="flex justify-between">
-							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="text"><?= t('about') ?></a></li>
-							<li><a class="inline-block border-black cursor-default" href="#app_map" data-app-view="map"><?= t('map') ?></a></li>
-							<li><a class="inline-block border-b border-black" href="#app_help" data-app-view="help"><?= t('help') ?></a></li>
+							<li><a class="inline-block border-b border-black" href="#app_info" data-app-open-view="text"><?= t('about') ?></a></li>
+							<li><a class="inline-block border-black cursor-default" href="#app_map" data-app-open-view="map"><?= t('map') ?></a></li>
+							<li><a class="inline-block border-b border-black" href="#app_help" data-app-open-view="help"><?= t('help') ?></a></li>
 						</ul>
 					</nav>
 				</header>
 				<div class="relative w-full h-full">
-					<div id="app_info" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-slot="text">
+					<div id="app_info" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-view="text">
+						<nav class="mb-ws-half text-sm lg:text-base">
+							<?= snippet('language-menu') ?>
+						</nav>
+						<article class="bodytext text-base" data-app-slot="text"></article>
 					</div>
-					<div id="app_help" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-slot="help">
+					<div id="app_help" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-view="help">
+						<nav class="mb-ws-half text-sm lg:text-base">
+							<?= snippet('language-menu') ?>
+						</nav>
 						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
 							<?= $page->intro()->kt() ?>
 							<?= $page->info()->kt() ?>
 						</article>
 					</div>
-					<div class="bg-red absolute inset-0 z-2 w-full h-full" data-app-slot="map">
-							<div id="app_map" class="absolute inset-0 w-full h-full border-black border-2 bg-red"></div>
+					<div class="bg-red absolute inset-0 z-2 w-full h-full" data-app-view="map">
+						<div id="app_map" class="absolute inset-0 w-full h-full border-black border-2 bg-red"></div>
 					</div>
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">

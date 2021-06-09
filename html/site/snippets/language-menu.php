@@ -7,6 +7,6 @@
 		if($language === $kirby->language()): ?>
 	<span><?= strtoupper($langcode) ?></span>
 	<?php else: ?>
-	<a href="<?= $page->url($langcode) ?>" data-langswitch><?= strtoupper($langcode) ?></a>
+	<a class="inline-block border-black border-b" href="<?= $page->url($langcode) ?>" data-langswitch><?= strtoupper($langcode) ?></a>
 	<?php endif ?>
 <?php endfor ?>

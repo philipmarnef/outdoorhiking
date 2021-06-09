@@ -6,7 +6,8 @@ const API_URL = `/a/`,
 			ATTR_CONTAINER = 'data-app',
 			ATTR_BUTTON_OPEN = 'data-app-open',
 			ATTR_BUTTON_CLOSE = 'data-app-close',
-			ATTR_NAVIGATION = 'data-app-view',
+			ATTR_NAVIGATION = 'data-app-open-view',
+			ATTR_VIEW = 'data-app-view',
 			ATTR_SLOT = 'data-app-slot',
 			ATTR_AUDIO = 'data-player-audio',
 			SELECTOR_LANGSWITCHER = '[data-langswitch]',
@@ -51,7 +52,7 @@ export default function App () {
 			['num', 'markertitle', 'playertitle', 'text'].forEach(key => {
 				const $e = document.querySelector(`[${ATTR_SLOT}=${key}]`);
 				if($e) {
-					$e.innerHTML = json[key];
+					$e.innerHTML = json[key] || '&nbsp;';
 				}
 			});
 
@@ -119,7 +120,7 @@ export default function App () {
 				$link.classList.add('cursor-default');
 				// show linked content
 				const slot = $link.getAttribute(ATTR_NAVIGATION);
-				const $info = document.querySelector(`[${ATTR_SLOT}=${slot}]`);
+				const $info = document.querySelector(`[${ATTR_VIEW}=${slot}]`);
 				$info.parentElement.appendChild($info);
 			}
 		},
