@@ -96,7 +96,7 @@ function watcher () {
   });
   watch('./src/css/**/*', {usePolling: true}, css);
   watch('./src/js/**/*', {usePolling: true}, js);
-  watch('./html/site/**/*').on('change', browserSync.reload);
+  watch('./html/site/**/*', {usePolling: true}).on('change', browserSync.reload);
 }
 
 export const build = series(parallel(clean, images), parallel(css,js));
