@@ -2,7 +2,8 @@
 
 return [
 	'pattern' => 'q/(:alphanum)',
-	'action' => function (string $code) {
+	'language' => '*',
+	'action' => function ($language, string $code) {
 		$site = kirby()->site();
 
 		$home = $site->find('home');
@@ -19,6 +20,14 @@ return [
 			}
 		};
 
-		return $home->render(['title' => $title]);
+		$url = $home->url($language->code()) . '/q/' . $code;
+
+		return Page::factory([
+			'slug' => 'q/' . $code,
+			'template' => 'home',
+			'files' => $home->files()->toArray(),
+			'content' => $home->content()->toArray(),
+			'url' => $url,
+		]);
 	},
 ];

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= $kirby->languageCode() ?>">
+<html lang="<?= $kirby->language()->code() ?>">
 <?= snippet('head') ?>
 
 <body class="text-black bg-red">
@@ -10,6 +10,9 @@
 			<header class="flex-grow-0 flex-shrink w-full px-ws pt-4 pb-2 text-poster bg-white">
 				<h1>Outdoor Hiking with Sound &ndash;<br>&amp; Other Fireworks</h1>
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
+				<nav class="absolute right-ws top-4 text-base">
+					<?= snippet('language-menu') ?>
+				</nav>
 			</header>
 			<div class="flex justify-center items-center w-full h-full px-ws">
 				<div class="poster-image relative w-full h-full" data-poster-image></div>
@@ -26,17 +29,17 @@
 			<div class="min-h-screen mt-vh landscape:mt-0 p-ws bg-green">
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
-					<div class="relative pb-lb pl-12 mt-lb">
+					<div class="relative pb-lb pl-10 xl:pl-12 mt-lb">
 						<figure class="absolute top-0 left-0">
-							<img class="w-9" src="/assets/images/info.svg" alt="">
+							<img class="w-7 xl:w-9" src="/assets/images/info.svg" alt="">
 						</figure>
 						<?= $page->info()->kt() ?>
 					</div>
 				</div>
-				<h3 class="landscape:hidden pl-12 mt-lb bodytext">Deelnemende<br>kunstenaars:</h3>
+				<h3 class="landscape:hidden pl-10 xl:pl-12 mt-lb bodytext"><?= t('participating') ?></h3>
 				<div class="my-lb pr-4 landscape:pr-2">
 					<table class="w-full lg:text-lg">
-					<?php foreach($page->children()->template('artwork') as $work): ?>
+					<?php foreach(page('home')->children()->template('artwork') as $work): ?>
 						<tr class="align-top" data-app-open="<?= $work->appcode() ?>">
 							<td class="w-10 lg:w-12 xl:w-16"><?= str_pad($work->num(), 2, '0', STR_PAD_LEFT) ?></td>
 							<td><?= $work->artist() ?></td>
@@ -84,9 +87,9 @@
 					<h4 data-app-slot="playertitle"></h4>
 					<nav>
 						<ul class="flex justify-between">
-							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="text">over</a></li>
-							<li><a class="inline-block border-black cursor-default" href="#app_map" data-app-view="map">kaart</a></li>
-							<li><a class="inline-block border-b border-black" href="#app_help" data-app-view="help">help</a></li>
+							<li><a class="inline-block border-b border-black" href="#app_info" data-app-view="text"><?= t('about') ?></a></li>
+							<li><a class="inline-block border-black cursor-default" href="#app_map" data-app-view="map"><?= t('map') ?></a></li>
+							<li><a class="inline-block border-b border-black" href="#app_help" data-app-view="help"><?= t('help') ?></a></li>
 						</ul>
 					</nav>
 				</header>
@@ -105,7 +108,7 @@
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
 					<div class="player-message bodytext text-base">
-						<p class="mb-ws">De geluidswerken kunnen pas beluisterd worden vanaf 26.06.2021</p>
+						<p class="mb-ws"><?= t('comingsoon') ?></p>
 					</div>
 					<audio data-player-audio></audio>
 					<div class="player-buttons flex flex-wrap justify-between w-full text-base leading-none">

@@ -2,11 +2,14 @@
 
 return [
 	'pattern' => 'a/(:alphanum)',
-	'action' => function (string $id) {
+	'language' => '*',
+	'action' => function ($language, string $id) {
 		$site = kirby()->site();
+		// visit the correct language version
+		$home = $site->visit('home', $language);
 
-		// all artworks
-		$children = $site->find('home')->children();
+		// all markers
+		$children = $home->children();
 
 		// marker array
 		$markers = [];

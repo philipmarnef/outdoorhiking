@@ -9,8 +9,15 @@ const API_URL = `/a/`,
 			ATTR_NAVIGATION = 'data-app-view',
 			ATTR_SLOT = 'data-app-slot',
 			ATTR_AUDIO = 'data-player-audio',
+			SELECTOR_LANGSWITCHER = '[data-langswitch]',
 			SELECTOR_POSTER = '.poster-section',
 			UPDATE_EVENT = 'artwork-change';
+
+const langprefix = function (path) {
+	const matches = path.match(/^\/[a-z]{2}/);
+	const lang = matches !== null ? matches[0] : '';
+	return lang;
+}
 
 export default function App () {
 
@@ -77,6 +84,8 @@ export default function App () {
 
 			// push history
 			this.updateUrl(json.id);
+			// change language switcher url(s)
+			this.updateLangswitcher(json.id);
 		},
 
 		open () {
@@ -116,7 +125,8 @@ export default function App () {
 		},
 
 		updateUrl (id) {
-			const url = `${window.location.protocol}//${window.location.host}/q/${id}`;
+			const lang = langprefix(window.location.pathname);
+			const url = `${window.location.protocol}//${window.location.host}${lang}/q/${id}`;
 
 			const marker = this.data[`_${id}`];
 			let title = 'Outdoor Hiking with Sound and Other Fireworks';
@@ -126,6 +136,17 @@ export default function App () {
 
 			window.history.pushState({}, title, url);
 			document.title = title;
+		},
+
+		updateLangswitcher (id) {
+			const $links = document.querySelectorAll(SELECTOR_LANGSWITCHER);
+			$links.forEach($link => {
+				if($link.href) {
+					const path = $link.href.replace(`${window.location.protocol}//${window.location.host}`, '');
+					const lang = langprefix(path);
+					$link.href = `${lang}/q/${id}`;
+				}
+			});
 		},
 
 		init () {
