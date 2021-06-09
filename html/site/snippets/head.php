@@ -6,7 +6,10 @@
 
 	<title><?= $title ?? $site->title() ?></title>
 
-<?php if($_SERVER['HTTP_HOST'] !== 'outdoorhiking.be'): ?>
+<?php if($_SERVER['HTTP_HOST'] === 'outdoorhiking.be'): ?>
+	<!-- Fathom - beautiful, simple website analytics -->
+	<script src="https://cdn.usefathom.com/script.js" data-site="UITMZYFQ" defer></script>
+<?php else: ?>
 	<meta name="robots" content="noindex,nofollow,noodp">
 <?php endif; ?>
 
