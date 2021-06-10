@@ -2,7 +2,7 @@
 <html lang="<?= $kirby->language()->code() ?>">
 <?= snippet('head') ?>
 
-<body class="text-black bg-red">
+<body class="text-black bg-white">
 
 	<main class="relative">
 
@@ -77,7 +77,7 @@
 			</div>
 		</section>
 
-		<section class="app-section fixed z-0 h-screen p-ws" data-app="<?php if($page->defaultmarker()->isNotEmpty()) print $page->defaultmarker()->toPage()->appcode(); ?>">
+		<section class="app-section fixed z-0 h-screen p-ws bg-red" data-app="<?php if($page->defaultmarker()->isNotEmpty()) print $page->defaultmarker()->toPage()->appcode(); ?>">
 			<div class="flex flex-col h-full lg:text-lg">
 				<header class="w-full mb-ws-half leading-snug">
 					<div class="flex justify-between items-start">

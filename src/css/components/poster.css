@@ -1,6 +1,6 @@
 .poster-section {
-	left: var(--ws-half);
-	width: calc(100% - var(--ws-half));
+	left: 0;
+	width: 100%;
 	transition: left 0.4s ease-out;
 	will-change: left;
 }
