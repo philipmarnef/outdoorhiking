@@ -8,7 +8,8 @@
     "build": "NODE_ENV=production npx gulp build",
     "push": "rsync -avhi html/ root@172.104.225.129:/var/www/outdoorhiking.be/html/ --chown=www-data:www-data --exclude-from=.rsync-push-exclude --delete",
     "pull-content": "rsync -avhi root@172.104.225.129:/var/www/outdoorhiking.be/html/content/ html/content --exclude=.DS_Store --delete",
-    "push-staging": "rsync -avhi html/ root@172.104.225.129:/var/www/outdoorhiking.by.bureaumarnef.be/html/ --chown=www-data:www-data --exclude-from=.rsync-push-exclude --delete"
+    "push-staging": "rsync -avhi html/ root@172.104.225.129:/var/www/outdoorhiking.by.bureaumarnef.be/html/ --chown=www-data:www-data --exclude-from=.rsync-push-exclude --delete",
+    "push-content-staging": "rsync -avhi html/content/ root@172.104.225.129:/var/www/outdoorhiking.by.bureaumarnef.be/html/content --chown=www-data:www-data --exclude=.DS_Store --delete"
   },
   "keywords": [],
   "author": "Philip Marnef",
