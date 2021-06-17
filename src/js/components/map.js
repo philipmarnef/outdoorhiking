@@ -103,7 +103,7 @@ export default function Map (options = {})
 		addPositionControl (map) {
 			if(!this.leaflet.hasOwnProperty('position')) {
 
-				// custom control
+				// custom Position control
 				L.Control.Position = L.Control.extend({
 					options: {
 						position: 'topleft',
@@ -129,8 +129,8 @@ export default function Map (options = {})
 					},
 					_setPosition: function (event) {
 						L.DomEvent.preventDefault(event);
+						// get location and set the view
 						map.locate({setView: true});
-						console.log('clicked position button');
 					},
 				});
 
