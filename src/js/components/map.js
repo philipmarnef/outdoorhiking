@@ -100,12 +100,55 @@ export default function Map (options = {})
 			}
 		},
 
+		addPositionControl (map) {
+			if(!this.leaflet.hasOwnProperty('position')) {
+
+				// custom control
+				L.Control.Position = L.Control.extend({
+					options: {
+						position: 'topleft',
+					},
+					initialize: function (options) {
+						L.Util.setOptions(this, options);
+					},
+					onAdd: function (map) {
+						const a = L.DomUtil.create('a');
+						a.title = "Show your location";
+						a.setAttribute('role', 'button');
+						a.setAttribute('aria-label', 'Show your location');
+						a.href = '#';
+						a.textContent = '*';
+
+						a.classList.add('leaflet-control-location');
+
+						L.DomEvent.on(a, 'click', this._setPosition, this);
+						return a;
+					},
+					onRemove: function (map) { 
+						L.DomEvent.off(a, 'click', this._setPosition, this);
+					},
+					_setPosition: function (event) {
+						L.DomEvent.preventDefault(event);
+						map.locate({setView: true});
+						console.log('clicked position button');
+					},
+				});
+
+				this.leaflet.position = new L.Control.Position();
+				this.leaflet.position.addTo(map);
+			}
+		},
+
 		init () {
 			// create map
 			this.leaflet.map = L.map(CONTAINER_ID).setView(center, zoom);
+
 			L.tileLayer('https://api.mapbox.com/styles/v1/philipmarnef/ckp2quly704sd18lg93tg13lw/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoicGhpbGlwbWFybmVmIiwiYSI6ImNrcDJucGdpYTFvZngycW1jbW0zbWl2YjAifQ.b6VuOrEDNBKl9LKqZhUV6w', {
 				attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 			}).addTo(this.leaflet.map);
+
+			// position control
+			this.addPositionControl(this.leaflet.map);
 
 			// locate
 			this.leaflet.map.locate({
