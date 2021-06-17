@@ -98,7 +98,7 @@
 						<nav class="mb-ws-half text-sm lg:text-base">
 							<?= snippet('language-menu') ?>
 						</nav>
-						<article class="bodytext text-base" data-app-slot="text"></article>
+						<article class="h-full pb-2 overflow-y-scroll scrollbars-none bodytext text-base" data-app-slot="text"></article>
 					</div>
 					<div id="app_help" class="bg-red absolute inset-0 z-2 w-full h-full overflow-hidden" data-app-view="help">
 						<nav class="mb-ws-half text-sm lg:text-base">
