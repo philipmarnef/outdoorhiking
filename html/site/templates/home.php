@@ -7,9 +7,16 @@
 	<main class="relative">
 
 		<section class="poster-section fixed top-0 z-10 flex flex-col h-screen bg-white">
-			<header class="flex-grow-0 flex-shrink w-full px-ws pt-4 lg:pt-6 pb-2 text-poster bg-white">
+			<header class="relative flex-grow-0 flex-shrink w-full px-ws pt-4 lg:pt-6 pb-2 text-poster bg-white">
 				<h1>Outdoor Hiking with Sound &ndash;<br>&amp; Other Fireworks</h1>
 				<h2 class="text-right" data-header>26.06.2021&ndash;&thinsp;03.10.2021</h2>
+				<div class="fireworks">
+					<div class="fireworks-flash"></div>
+					<div class="fireworks-flash"></div>
+					<div class="fireworks-flash"></div>
+					<div class="fireworks-flash"></div>
+					<div class="fireworks-flash"></div>
+				</div>
 			</header>
 			<div class="flex justify-center items-center w-full h-full px-ws">
 				<div class="poster-image relative w-full h-full" data-poster-image></div>
