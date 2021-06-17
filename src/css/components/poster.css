@@ -115,10 +115,6 @@
 	padding: 0.4em 0 0.2em;
 }
 
-.poster-footer > *:last-child {
-	padding-top: 0;
-}
-
 @screen landscape {
 	.poster-section {
 		left: var(--ws);
