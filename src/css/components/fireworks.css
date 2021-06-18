@@ -16,24 +16,24 @@
 	}
 
 	.fireworks-flash:nth-child(1) {
-		top: 33%;
+		top: 36%;
 		left: 22%;
-		width: 2.8986%;
-		height: 11.8812%;
+		width: 2.1739%;
+		height: 8.9109%;
 	}
 
 	.fireworks-flash:nth-child(2) {
 		top: 65%;
-		left: 30%;
+		left: 28%;
 		width: 3.3816%;
 		height: 13.8614%;
-		animation-delay: 0.25s;
+		animation-delay: 0.2s;
 	}
 
 	.fireworks-flash:nth-child(3) {
 		top: 38%;
 		left: 52%;
-		animation-delay: 1.25s;
+		animation-delay: 1s;
 	}
 
 	.fireworks-flash:nth-child(4) {
@@ -41,7 +41,7 @@
 		left: 58%;
 		width: 2.8986%;
 		height: 11.8812%;
-		animation-delay: 1.5s;
+		animation-delay: 1.1s;
 	}
 
 	.fireworks-flash:nth-child(5) {
@@ -49,15 +49,14 @@
 		left: 56%;
 		width: 2.1739%;
 		height: 8.9109%;
-		animation-delay: 2s;
+		animation-delay: 1.4s;
 	}
-
 }
 
 @keyframes flash {
 	0% { opacity: 0; }
-	1% { opacity: 1; }
-	6% { opacity: 1; }
-	7% { opacity: 0; }
+	0.1% { opacity: 1; }
+	4% { opacity: 1; }
+	4.1% { opacity: 0; }
 	100% { opacity: 0; }
 }
