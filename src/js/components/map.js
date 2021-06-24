@@ -100,8 +100,8 @@ export default function Map (options = {})
 			}
 		},
 
-		addPositionControl (map) {
-			if(!this.leaflet.hasOwnProperty('position')) {
+		addPositionControl (leaflet) {
+			if(!leaflet.hasOwnProperty('position')) {
 
 				// custom Position control
 				L.Control.Position = L.Control.extend({
@@ -130,12 +130,14 @@ export default function Map (options = {})
 					_setPosition: function (event) {
 						L.DomEvent.preventDefault(event);
 						// get location and set the view
-						map.locate({setView: true});
+						if(leaflet.hasOwnProperty('location')) {
+							leaflet.map.panTo(leaflet.location.getLatLng());
+						}
 					},
 				});
 
 				this.leaflet.position = new L.Control.Position();
-				this.leaflet.position.addTo(map);
+				this.leaflet.position.addTo(leaflet.map);
 			}
 		},
 
@@ -148,7 +150,7 @@ export default function Map (options = {})
 			}).addTo(this.leaflet.map);
 
 			// position control
-			this.addPositionControl(this.leaflet.map);
+			this.addPositionControl(this.leaflet);
 
 			// locate
 			this.leaflet.map.locate({
