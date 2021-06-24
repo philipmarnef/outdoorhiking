@@ -99,7 +99,7 @@ function watcher () {
   watch('./html/site/**/*', {usePolling: true}).on('change', browserSync.reload);
 }
 
-export const build = series(parallel(clean, images), parallel(css,js));
-export const serve = series(build, watcher)
+export const build = series(parallel(clean, images), parallel(css, js));
+export const serve = series(parallel(css, js), watcher)
 
 export default serve;
