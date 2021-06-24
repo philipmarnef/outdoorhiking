@@ -67,17 +67,15 @@ export default function App () {
 				// init player once
 				if(!this.hasOwnProperty('player')) this.player = new Player();
 
-				// enable or disable
-				if(json.audiofile) {
+				// if enabled, load audio
+				$audio.src = '';
+	
+				if(json.public === true && json.audiofile) {
 					// disable for now
-//					$audio.src = json.audiofile;
-//					$audio.load();
-					$audio.src = '';
-					this.player.reset();
-				} else {
-					$audio.src = '';
-					this.player.reset();
+					$audio.src = json.audiofile;
+					$audio.load();
 				}
+				this.player.reset();
 			}
 
 			// open app

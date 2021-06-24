@@ -122,7 +122,9 @@
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
 					<div class="player-message bodytext text-base">
+						<?php if(option('philipmarnef.OH.public') !== true): ?>
 						<p class="mb-ws"><?= t('comingsoon') ?></p>
+						<?php endif ?>
 					</div>
 					<audio data-player-audio></audio>
 					<div class="player-buttons flex flex-wrap justify-between w-full text-base leading-none">

@@ -59,6 +59,7 @@ return [
 
 		// build data array
 		$data = [
+			'public' => option('philipmarnef.OH.public') ?? false,
 			'id'=> $id,
 			'num' => $num ?? '',
 			'markertitle' => $markertitle ?? '',
