@@ -12,6 +12,6 @@ return [
 		'about' => 'about',
 		'map' => 'map',
 		'help' => 'help',
-		'comingsoon' => 'The audio works will be available 26.06.2021',
+		'comingsoon' => 'Starting from 26.06.2021 you can listen to the audio works in the park.',
 	],
 ];

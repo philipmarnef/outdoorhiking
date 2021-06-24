@@ -12,6 +12,6 @@ return [
 		'about' => 'over',
 		'map' => 'kaart',
 		'help' => 'help',
-		'comingsoon' => 'De geluidswerken kunnen pas beluisterd worden vanaf 26.06.2021',
+		'comingsoon' => 'De geluidswerken kunnen pas beluisterd worden vanaf 26.06.2021 in het park.',
 	],
 ];
