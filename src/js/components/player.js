@@ -50,12 +50,10 @@ export default function Player ()
 					if($playpause) {
 
 						$playpause.addEventListener('click', e => {
-							if($audio.getAttribute(ATTR_AUDIO) !== 'disabled') {
-								if($audio.paused) {
-									$audio.play();
-								} else {
-									$audio.pause();
-								}
+							if($audio.paused) {
+								$audio.play();
+							} else {
+								$audio.pause();
 							}
 						});
 
@@ -71,7 +69,7 @@ export default function Player ()
 		
 					// rewind button
 					if($rewind) $rewind.addEventListener('click', e => {
-						if($audio.getAttribute(ATTR_AUDIO) !== 'disabled') $audio.currentTime = 0;
+						$audio.currentTime = 0;
 					});
 	
 					// seek bar
