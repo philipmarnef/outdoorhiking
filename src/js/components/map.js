@@ -1,6 +1,9 @@
 import PubSub from 'pubsub-js';
 
-const CONTAINER_ID = 'app_map';
+const CONTAINER_ID 		= 'app_map',
+			DISTANCE 				= 100,
+			PROXIMITY_EVENT = 'in-range',
+	  	DEBUG           = true;
 
 import L from 'leaflet';
 
@@ -42,10 +45,15 @@ export default function Map (options = {})
 		},
 
 		selectMarker (identifier) {
-			const selected = this.getMarker(identifier);
+			this.selected = this.getMarker(identifier);
+
+			// check (last known) distance to selected marker
+			const inRange = this.checkProximity();
+			PubSub.publish(PROXIMITY_EVENT, inRange);
+
 			this.markers.forEach(marker => {
 				marker.leafletMarker._icon.classList.remove('map-marker-active');
-				if(selected === marker) {
+				if(this.selected === marker) {
 					this.leaflet.map.panTo(marker.leafletMarker._latlng);
 					marker.leafletMarker._icon.classList.add('map-marker-active');
 				}
@@ -73,8 +81,8 @@ export default function Map (options = {})
 					// set update marker styling & pan map
 					this.selectMarker(e.target);
 
-					// publish marker change
 					const marker = this.getMarker(e.target);
+					// publish marker change
 					PubSub.publish(updateEvent, marker.id);
 				});
 
@@ -83,7 +91,7 @@ export default function Map (options = {})
 			});
 
 			// add layer to map
-			this.leaflet.layer.addTo(this.leaflet.map);
+			this.leaflet.layer.addTo(this.leaflet.map);			
 		},
 
 		setLocation (latlng) {
@@ -141,6 +149,25 @@ export default function Map (options = {})
 			}
 		},
 
+		checkProximity () {
+			const marker = this.selected;
+			if(!marker || !marker.hasOwnProperty('leafletMarker')) {
+				console.error('Checking distance: marker not found');
+				return false;
+			}
+			let inRange = false;
+			if(this.leaflet.hasOwnProperty('location')) {
+				const mc = marker.leafletMarker.getLatLng();
+				const uc = this.leaflet.location.getLatLng();
+				const distance = this.leaflet.map.distance(mc, uc);
+				inRange = distance <= DISTANCE;
+				if(DEBUG) console.log('Distance: ', Math.round(distance) + 'm');
+			} else {
+				if(DEBUG) console.error('Checking distance: location not set');
+			}
+			return inRange;
+		},
+
 		init () {
 			// create map
 			this.leaflet.map = L.map(CONTAINER_ID).setView(center, zoom);
@@ -155,12 +182,17 @@ export default function Map (options = {})
 			// locate
 			this.leaflet.map.locate({
 				watch: true,
-				maximumAge: 1000,
+				maximumAge: 500,
 				enableHighAccuracy: true,
 			});
 
 			this.leaflet.map.addEventListener('locationfound', e => {
+				if(DEBUG) console.log('Location found');
 				this.setLocation(e.latlng);
+
+				// check distance to selected marker
+				const inRange = this.checkProximity();
+				PubSub.publish(PROXIMITY_EVENT, inRange);
 			});
 		},
 	};

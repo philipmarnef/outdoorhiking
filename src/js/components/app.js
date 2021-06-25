@@ -2,17 +2,17 @@ import PubSub from 'pubsub-js';
 import Map from './map.js';
 import Player from './player.js';
 
-const API_URL = `/a/`,
-			ATTR_CONTAINER = 'data-app',
-			ATTR_BUTTON_OPEN = 'data-app-open',
-			ATTR_BUTTON_CLOSE = 'data-app-close',
-			ATTR_NAVIGATION = 'data-app-open-view',
-			ATTR_VIEW = 'data-app-view',
-			ATTR_SLOT = 'data-app-slot',
-			ATTR_AUDIO = 'data-player-audio',
+const API_URL 							= `/a/`,
+			ATTR_CONTAINER        = 'data-app',
+			ATTR_BUTTON_OPEN      = 'data-app-open',
+			ATTR_BUTTON_CLOSE     = 'data-app-close',
+			ATTR_NAVIGATION       = 'data-app-open-view',
+			ATTR_VIEW             = 'data-app-view',
+			ATTR_SLOT             = 'data-app-slot',
+			ATTR_AUDIO            = 'data-player-audio',
 			SELECTOR_LANGSWITCHER = '[data-langswitch]',
-			SELECTOR_POSTER = '.poster-section',
-			UPDATE_EVENT = 'artwork-change';
+			SELECTOR_POSTER       = '.poster-section',
+			UPDATE_EVENT          = 'artwork-change';
 
 const langprefix = function (path) {
 	const matches = path.match(/^\/[a-z]{2}/);
@@ -67,15 +67,13 @@ export default function App () {
 				// init player once
 				if(!this.hasOwnProperty('player')) this.player = new Player();
 
-				$audio.src = '';
-
-				// if enabled, load audio
+				// if public && audio is present
 				if(json.public === true && json.audiofile) {
+
+					this.player.reset();
 					$audio.setAttribute(ATTR_AUDIO, json.audiofile);
-//					$audio.load();
 				}
 
-				this.player.reset();
 			}
 
 			// open app

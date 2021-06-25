@@ -5,6 +5,7 @@ module.exports = {
     ],
     options: {
       safelist: [
+        'hidden',
         // include classes used in panel textinputs here
       ],
     },

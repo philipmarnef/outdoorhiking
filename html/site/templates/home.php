@@ -121,9 +121,11 @@
 					</div>
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
-					<div class="player-message bodytext text-base">
+					<div class="bodytext text-base">
 						<?php if(option('philipmarnef.OH.public') !== true): ?>
 						<p class="mb-ws"><?= t('comingsoon') ?></p>
+						<?php else: ?>
+						<p class="mb-ws hidden" data-player-message><?= t('notinrange') ?></p>
 						<?php endif ?>
 					</div>
 					<audio data-player-audio></audio>

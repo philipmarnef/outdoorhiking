@@ -13,5 +13,6 @@ return [
 		'map' => 'map',
 		'help' => 'help',
 		'comingsoon' => 'Starting from 26.06.2021 you can listen to the audio works in the park.',
+		'notinrange' => 'You can only activate the audio works in the park. Best with headphones.',
 	],
 ];

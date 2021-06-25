@@ -1,6 +1,11 @@
-const ATTR_AUDIO = 'data-player-audio',
-			ATTR_CONTROL = 'data-player-control',
-			CLASS_PAUSE = 'player-button-pause';
+import PubSub from "pubsub-js";
+
+const ATTR_AUDIO      = 'data-player-audio',
+	  	ATTR_CONTROL    = 'data-player-control',
+	  	ATTR_MESSAGE    = 'data-player-message',
+	  	CLASS_PAUSE     = 'player-button-pause',
+	  	PROXIMITY_EVENT = 'in-range',
+	  	DEBUG           = true;
 
 
 const secondsToClocktime = function (duration) {
@@ -13,83 +18,147 @@ const secondsToClocktime = function (duration) {
 export default function Player ()
 {
 
-	const $audio = document.querySelector(`[${ATTR_AUDIO}]`);
-	const $playpause = document.querySelector(`[${ATTR_CONTROL}=playpause]`);
-	const $rewind = document.querySelector(`[${ATTR_CONTROL}=rewind]`);
-	const $seek = document.querySelector(`[${ATTR_CONTROL}=seek]`);
-	const $currentTime = document.querySelector(`[${ATTR_CONTROL}=currentTime]`);
-	const $totalTime = document.querySelector(`[${ATTR_CONTROL}=totalTime]`);
-
 	const p = {
+
+		$audio:       document.querySelector(`[${ATTR_AUDIO}]`),
+		$playpause:   document.querySelector(`[${ATTR_CONTROL}=playpause]`),
+		$rewind:      document.querySelector(`[${ATTR_CONTROL}=rewind]`),
+		$seek:        document.querySelector(`[${ATTR_CONTROL}=seek]`),
+		$currentTime: document.querySelector(`[${ATTR_CONTROL}=currentTime]`),
+		$totalTime:   document.querySelector(`[${ATTR_CONTROL}=totalTime]`),
+		$message:     document.querySelector(`[${ATTR_MESSAGE}]`),
+
 		listening: false,
 
 		reset () {
 			// reset play head
-			$audio.pause();
+			this.$audio.pause();
 			// pausing this way doesn't always fire the pause event :-(
-			if($playpause) $playpause.classList.remove(CLASS_PAUSE);
+			if(this.$playpause) this.$playpause.classList.remove(CLASS_PAUSE);
 
 			// rewind play head
-			$audio.currentTime = 0;
+			this.$audio.currentTime = 0;
 			// set total time
-			$totalTime.textContent = $audio.duration ? secondsToClocktime($audio.duration) : '00:00';
+			this.$totalTime.textContent = '00:00';
+		},
+
+		setDuration () {
+
+			const _player = new Audio(this.$audio.getAttribute('src'));
+			_player.addEventListener("durationchange", e => {
+				if (e.target.duration != Infinity) {
+					let duration = e.target.duration;
+					_player.remove();
+					console.log('Audio duration = ', duration);
+					this.$totalTime.textContent =secondsToClocktime(duration);
+				};
+			}, false);      
+			_player.load();
+			_player.currentTime = 24*60*60; //fake big time
+			_player.volume = 0;
+			_player.play();
+		},
+
+		activate (e, inRange) {
+			if(DEBUG) console.log('Trying to activate the player');
+
+			// not in range? Show the message
+			if(!inRange) {
+				if(DEBUG) console.log('Not in range');
+				this.$message.classList.remove('hidden');
+				this.$audio.setAttribute('disabled', '');
+				return;
+			} else {
+				if(DEBUG) console.log('In range');
+				this.$message.classList.add('hidden');
+				this.$audio.removeAttribute('disabled');
+			}
+
+			// Already activated? Do nothing
+			if(this.$audio.getAttribute(ATTR_AUDIO) === '') {
+				if(DEBUG) console.log('Player src already set');
+				return;
+			}
+
+			// Set src & reload
+			const url = this.$audio.getAttribute(ATTR_AUDIO);
+			if(DEBUG) console.log('Url = ', url);
+			if(url) {
+				this.$audio.src = url;
+				this.$audio.setAttribute(ATTR_AUDIO, '');
+				if(DEBUG) console.log('Loading audio ', this.$audio.src);
+				this.$audio.load();
+			}
+		},
+
+		loadHandler (e) {
+
+			if(DEBUG) console.log('Audio metadata loaded');
+			this.reset();
+			this.setDuration();
+
+			// add control listeners only once!
+			if(!this.listening) {
+
+				// play/pause button
+				if(this.$playpause) {
+
+					this.$playpause.addEventListener('click', e => {
+						// disabled? do nothing
+						if(this.$audio.hasAttribute('disabled')) return;
+
+						if(this.$audio.paused) {
+							this.$audio.play();
+						} else {
+							this.$audio.pause();
+						}
+					});
+
+					this.$audio.addEventListener('play', e => {
+						this.$playpause.classList.add(CLASS_PAUSE);
+					});
+					
+					this.$audio.addEventListener('pause', e => {
+						this.$playpause.classList.remove(CLASS_PAUSE);
+					});
+
+				};
+	
+				// rewind button
+				if(this.$rewind) this.$rewind.addEventListener('click', e => {
+					// disabled? do nothing
+					if(this.$audio.hasAttribute('disabled')) return;
+
+					this.$audio.currentTime = 0;
+				});
+
+				// seek bar
+				if(this.$seek) {
+					// update play head on user input
+					this.$seek.addEventListener('input', e => {
+						this.$audio.currentTime = this.$audio.duration * this.$seek.value / 100;
+					});
+	
+					// update while playing
+					this.$audio.addEventListener('timeupdate', e => {
+						this.$seek.value = parseInt(100 * this.$audio.currentTime / this.$audio.duration);
+						this.$currentTime.textContent = secondsToClocktime(this.$audio.currentTime);
+					});
+				}
+	
+				this.listening = true;
+			}
+
 		},
 
 		init () {
 
-			if(!$audio) return;
+			if(!this.$audio) return;
 
-			$audio.addEventListener('loadedmetadata', e => {
+			// activate the player only if the user is within distance
+			PubSub.subscribe(PROXIMITY_EVENT, this.activate.bind(this)),
 
-				this.reset();
-
-				// add control listeners only once!
-				if(!this.listening) {
-
-					// play/pause button
-					if($playpause) {
-
-						$playpause.addEventListener('click', e => {
-							if($audio.paused) {
-								$audio.play();
-							} else {
-								$audio.pause();
-							}
-						});
-
-						$audio.addEventListener('play', e => {
-							$playpause.classList.add(CLASS_PAUSE);
-						});
-						
-						$audio.addEventListener('pause', e => {
-							$playpause.classList.remove(CLASS_PAUSE);
-						});
-	
-					};
-		
-					// rewind button
-					if($rewind) $rewind.addEventListener('click', e => {
-						$audio.currentTime = 0;
-					});
-	
-					// seek bar
-					if($seek) {
-						// update play head on user input
-						$seek.addEventListener('input', e => {
-							$audio.currentTime = $audio.duration * $seek.value / 100;
-						});
-		
-						// update while playing
-						$audio.addEventListener('timeupdate', e => {
-							$seek.value = parseInt(100 * $audio.currentTime / $audio.duration);
-							$currentTime.textContent = secondsToClocktime($audio.currentTime);
-						});
-					}
-		
-					this.listening = true;
-				}
-
-			});
+			this.$audio.addEventListener('loadedmetadata', this.loadHandler.bind(this));
 
 		},
 	};

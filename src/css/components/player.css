@@ -73,32 +73,40 @@
 	background-image: url('../images/pause.svg');
 }
 
-.player audio[src=""] + .player-buttons .player-button-rewind {
+.player audio[src=""] + .player-buttons .player-button-rewind,
+.player audio[disabled] + .player-buttons .player-button-rewind {
 	background-image: url('../images/rewind-disabled.svg');
 	cursor: default;
 }
 
-.player audio[src=""] + .player-buttons .player-button-play {
+.player audio[src=""] + .player-buttons .player-button-play,
+.player audio[disabled] + .player-buttons .player-button-play {
 	background-image: url('../images/play-disabled.svg');
 	cursor: default;
 }
 
-.player audio[src=""] + .player-buttons .player-button-play.player-button-pause {
+.player audio[src=""] + .player-buttons .player-button-play.player-button-pause,
+.player audio[disabled] + .player-buttons .player-button-play.player-button-pause {
 	background-image: url('../images/pause-disabled.svg');
 	cursor: default;
 }
 
 .player audio[src=""] + .player-buttons .player-seek::before,
 .player audio[src=""] + .player-buttons .player-seek::after,
-.player audio[src=""] + .player-buttons .player-seek-progress {
+.player audio[src=""] + .player-buttons .player-seek-progress,
+.player audio[disabled] + .player-buttons .player-seek::before,
+.player audio[disabled] + .player-buttons .player-seek::after,
+.player audio[disabled] + .player-buttons .player-seek-progress {
 	display: none;
 }
 
-.player audio[src=""] + .player-buttons .player-seek {
+.player audio[src=""] + .player-buttons .player-seek,
+.player audio[disabled] + .player-buttons .player-seek {
 	@apply border-dotted border-black border-2 border-t-0;
 	height: 1.125rem;
 }
 
-.player audio[src=""] + .player-buttons .player-time {
+.player audio[src=""] + .player-buttons .player-time,
+.player audio[disabled] + .player-buttons .player-time {
 	@apply border-0;
 }
