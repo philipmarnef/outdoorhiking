@@ -10,7 +10,7 @@ import webpack              from    'webpack-stream';
 
 const forProduction = process.env.NODE_ENV === 'production';
 
-const baseUrl = 'http://outdoorhiking.test';
+const baseUrl = 'https://outdoorhiking.test';
 
 let postcssPlugins = [
   postcssEasyImport(),
