@@ -35,6 +35,15 @@ columns:
               en: Practical information
             type: markdown
             size: medium
+          help:
+            label:
+              nl: Helptekst
+              en: Help text
+            type: markdown
+            size: medium
+            help:
+              nl: Deze tekst wordt getoond in de app onder 'Help'
+              nl: This text is shown under 'help' in the app
           credits:
             label:
               nl: Credits

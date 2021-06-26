@@ -112,8 +112,7 @@
 							<?= snippet('language-menu') ?>
 						</nav>
 						<article class="h-full overflow-y-scroll scrollbars-none bodytext text-base">
-							<?= $page->intro()->kt() ?>
-							<?= $page->info()->kt() ?>
+							<?= $page->help()->kt() ?>
 						</article>
 					</div>
 					<div class="bg-red absolute inset-0 z-2 w-full h-full" data-app-view="map">
