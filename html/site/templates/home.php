@@ -21,10 +21,16 @@
 			<div class="flex justify-center items-center w-full h-full px-ws">
 				<div class="poster-image relative w-full h-full" data-poster-image></div>
 			</div>
+			<?= $langparam = $kirby->language()->code() === 'nl' ? '' : $kirby->language()->code() . '/' ?>
 			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster">
-				<li class="hidden tall:block landscape:block leading-none"><span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span></li>
-				<li class="hidden tall:block landscape:block leading-none border-black border-t-2"><span class="inline-block w-3/12">B:</span><span>Middelheimpark</span></li>
-				<li class="hidden tall:block landscape:block leading-none border-black border-t-2"><span class="inline-block w-3/12">C:</span><span>Park Vogelenzang</span></li>
+				<li class="hidden tall:block landscape:block leading-none">
+					<a class="inline-block w-3/12" href="/<?= $langparam ?>q/C98">A:</a><a href="/<?= $langparam ?>q/C98">Park Den Brandt</a>
+				</li>
+				<li class="hidden tall:block landscape:block leading-none border-black border-t-2">
+					<a class="inline-block w-3/12" href="/<?= $langparam ?>q/gJH">B:</a><a href="/<?= $langparam ?>q/gJH">Middelheimpark</a>
+				<li class="hidden tall:block landscape:block leading-none border-black border-t-2">
+					<a class="inline-block w-3/12" href="/<?= $langparam ?>q/NRq">C:</a><a href="/<?= $langparam ?>q/NRq">Park Vogelenzang</a>
+				</li>
 				<li class="tall:hidden landscape:hidden leading-none text-center">Nachtegalenpark</li>
 			</ul>
 		</section>
