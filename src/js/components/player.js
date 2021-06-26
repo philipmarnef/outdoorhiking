@@ -5,7 +5,7 @@ const ATTR_AUDIO      = 'data-player-audio',
 	  	ATTR_MESSAGE    = 'data-player-message',
 	  	CLASS_PAUSE     = 'player-button-pause',
 	  	PROXIMITY_EVENT = 'in-range',
-	  	DEBUG           = true;
+	  	DEBUG           = false;
 
 
 const secondsToClocktime = function (duration) {
@@ -49,7 +49,7 @@ export default function Player ()
 				if (e.target.duration != Infinity) {
 					let duration = e.target.duration;
 					_player.remove();
-					console.log('Audio duration = ', duration);
+					if(DEBUG) console.log('Audio duration = ', duration);
 					this.$totalTime.textContent =secondsToClocktime(duration);
 				};
 			}, false);      

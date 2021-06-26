@@ -3,7 +3,7 @@ import PubSub from 'pubsub-js';
 const CONTAINER_ID 		= 'app_map',
 			DISTANCE 				= 100,
 			PROXIMITY_EVENT = 'in-range',
-	  	DEBUG           = true;
+	  	DEBUG           = false;
 
 import L from 'leaflet';
 
