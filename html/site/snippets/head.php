@@ -17,7 +17,7 @@
 
 <?php if($_SERVER['HTTP_HOST'] === 'outdoorhiking.be'): ?>
 	<!-- Fathom - beautiful, simple website analytics -->
-	<script src="https://cdn.usefathom.com/script.js" data-site="UITMZYFQ" defer></script>
+	<script src="https://cdn.usefathom.com/script.js" data-site="UITMZYFQ" data-spa="auto" defer></script>
 <?php else: ?>
 	<meta name="robots" content="noindex,nofollow,noodp">
 <?php endif; ?>
