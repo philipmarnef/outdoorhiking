@@ -69,8 +69,9 @@ export default function App () {
 
 				// if public && audio is present
 				if(json.public === true && json.audiofile) {
-
+					// reset player
 					this.player.reset();
+					// add audiofile url to attribute
 					$audio.setAttribute(ATTR_AUDIO, json.audiofile);
 				}
 
@@ -122,15 +123,18 @@ export default function App () {
 		},
 
 		updateUrl (id) {
+			// make url based on current id
 			const lang = langprefix(window.location.pathname);
 			const url = `${window.location.protocol}//${window.location.host}${lang}/q/${id}`;
 
+			// make document title
 			const marker = this.data[`_${id}`];
 			let title = 'Outdoor Hiking with Sound and Other Fireworks';
 			if(marker) {
 				title = `${marker.num} ${marker.markertitle} | ${title}`;
 			}
 
+			// push url to history and set document title
 			window.history.pushState({}, title, url);
 			document.title = title;
 		},
@@ -198,6 +202,7 @@ export default function App () {
 				});
 			}
 
+			// make artist names open the app and set the artist marker
 			this.$buttons.forEach(button => {
 
 				button.classList.add('cursor-pointer')

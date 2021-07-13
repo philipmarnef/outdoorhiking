@@ -133,12 +133,13 @@
 					</div>
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
-					<div class="bodytext text-base">
-						<?php if(option('philipmarnef.OH.public') !== true): ?>
-						<p class="mb-ws"><?= t('comingsoon') ?></p>
-						<?php else: ?>
-						<p class="mb-ws hidden" data-player-message><?= t('notinrange') ?></p>
-						<?php endif ?>
+					<div class="bodytext text-base" data-player-message="<?php e(option('philipmarnef.OH.public') !== true, 'not-public', 'no-location') ?>">
+						<p class="mb-ws hidden" data-player-message-not-public><?= t('comingsoon') ?></p>
+						<p class="mb-ws hidden" data-player-message-not-supported><?= t('notsupported') ?></p>
+						<p class="mb-ws hidden" data-player-message-no-location><?= t('nolocation') ?></p>
+						<p class="mb-ws hidden" data-player-message-location-error><?= t('locationerror') ?></p>
+						<p class="mb-ws hidden" data-player-message-out-of-range><?= t('notinrange') ?></p>
+						<p class="mb-ws hidden" data-player-message-no-audiofile><?= t('noaudiofile') ?></p>
 					</div>
 					<audio data-player-audio></audio>
 					<div class="player-buttons flex flex-wrap justify-between w-full text-base leading-none">

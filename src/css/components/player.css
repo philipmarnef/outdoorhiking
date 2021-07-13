@@ -69,6 +69,15 @@
 	}
 }
 
+*[data-player-message="not-public"]     *[data-player-message-not-public],
+*[data-player-message="not-supported"]  *[data-player-message-not-supported],
+*[data-player-message="no-location"]    *[data-player-message-no-location],
+*[data-player-message="location-error"] *[data-player-message-location-error],
+*[data-player-message="no-audiofile"]   *[data-player-message-no-audiofile],
+*[data-player-message="out-of-range"]   *[data-player-message-out-of-range] {
+	display: block;
+}
+
 .player-button-play.player-button-pause {
 	background-image: url('../images/pause.svg');
 }

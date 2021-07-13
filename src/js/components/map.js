@@ -1,9 +1,10 @@
 import PubSub from 'pubsub-js';
 
-const CONTAINER_ID 		= 'app_map',
-			DISTANCE 				= 100,
-			PROXIMITY_EVENT = 'in-range',
-	  	DEBUG           = false;
+const CONTAINER_ID 				= 'app_map',
+			DISTANCE 						= 100,
+			PROXIMITY_EVENT 		= 'in-range',
+			LOCATIONERROR_EVENT = 'location-error',
+	  	DEBUG								= false;
 
 import L from 'leaflet';
 
@@ -179,20 +180,29 @@ export default function Map (options = {})
 			// position control
 			this.addPositionControl(this.leaflet);
 
-			// locate
+			// start location tracking
 			this.leaflet.map.locate({
 				watch: true,
 				maximumAge: 500,
 				enableHighAccuracy: true,
 			});
 
+			// on location data, update the map
 			this.leaflet.map.addEventListener('locationfound', e => {
 				if(DEBUG) console.log('Location found');
+
+				// set location marker
 				this.setLocation(e.latlng);
 
 				// check distance to selected marker
 				const inRange = this.checkProximity();
 				PubSub.publish(PROXIMITY_EVENT, inRange);
+			});
+
+			// on location error, show a message
+			this.leaflet.map.addEventListener('locationerror', e => {
+				console.error(e);
+				PubSub.publish(LOCATIONERROR_EVENT, e.code);
 			});
 		},
 	};
