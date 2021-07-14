@@ -133,7 +133,7 @@
 					</div>
 				</div>
 				<div class="player w-full mt-ws-half landscape:mt-ws">
-					<div class="bodytext text-base" data-player-message="<?php e(option('philipmarnef.OH.public') !== true, 'not-public', 'no-location') ?>">
+					<div class="bodytext text-base" data-player-message="<?php e(option('philipmarnef.OH.public') !== true, 'not-public') ?>">
 						<p class="mb-ws hidden" data-player-message-not-public><?= t('comingsoon') ?></p>
 						<p class="mb-ws hidden" data-player-message-not-supported><?= t('notsupported') ?></p>
 						<p class="mb-ws hidden" data-player-message-no-location><?= t('nolocation') ?></p>
