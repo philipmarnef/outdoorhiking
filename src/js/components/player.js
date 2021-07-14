@@ -3,6 +3,7 @@ import PubSub from "pubsub-js";
 const ATTR_AUDIO          = 'data-player-audio',
 	  	ATTR_CONTROL        = 'data-player-control',
 	  	ATTR_MESSAGE        = 'data-player-message',
+			ATTR_LOADING				= 'data-player-loading',
 	  	CLASS_PAUSE         = 'player-button-pause',
 			MSG_NOTSUPPORTED	  = 'not-supported',
 			MSG_NOLOCATION	    = 'no-location',
@@ -13,12 +14,10 @@ const ATTR_AUDIO          = 'data-player-audio',
 			LOCATIONERROR_EVENT = 'location-error',
 	  	DEBUG               = false;
 
-
 const secondsToClocktime = function (duration) {
 	const minutes = ('00' + Math.floor(duration / 60)).slice(-2);
 	const seconds = ('00' + Math.ceil(duration % 60)).slice(-2);
 	return `${minutes}:${seconds}`;
-
 }
 
 export default function Player ()
@@ -46,6 +45,18 @@ export default function Player ()
 			this.$audio.currentTime = 0;
 			// set total time
 			this.$totalTime.textContent = '00:00';
+		},
+
+		initializePlayer () {
+			if(DEBUG) console.log('initializing player');
+			// show loading state (CSS)
+			this.fileLoadHandler = this.fileLoadHandler.bind(this);
+
+			this.$audio.setAttribute(ATTR_LOADING, '');
+			this.$audio.addEventListener('canplaythrough', this.fileLoadHandler);
+
+			// update the track duration
+			this.setDuration();
 		},
 
 		setDuration () {
@@ -105,6 +116,12 @@ export default function Player ()
 			}
 		},
 
+		fileLoadHandler (e) {
+			if(DEBUG) console.log('Audio file can play');
+			e.target.removeAttribute(ATTR_LOADING);
+			e.target.removeEventListener('canplaythrough', this.fileLoadHandler);
+		},
+
 		locationErrorHandler(e, code) {
 			// only set an error message if the player isn't active yet
 			if(this.$audio.getAttribute('disabled') === '') {
@@ -125,11 +142,10 @@ export default function Player ()
 		loadHandler (e) {
 
 			if(DEBUG) console.log('Audio metadata loaded');
-			// reset, then disable the player
+			// reset, then enable the player
 			this.reset();
-			this.$audio.setAttribute('disabled', '');
-			// update the track duration
-			this.setDuration();
+			// set loading state and listen for 'canplay' event
+			this.initializePlayer();
 
 			// add control listeners only once!
 			if(!this.listening) {
@@ -187,6 +203,8 @@ export default function Player ()
 
 		init () {
 
+			if(DEBUG) console.log('Initializing player');
+
 			if(!this.$audio) return;
 
 			// set location errors
@@ -194,6 +212,8 @@ export default function Player ()
 
 			// activate the player only if the user is within distance
 			PubSub.subscribe(PROXIMITY_EVENT, this.activate.bind(this));
+
+			console.log('PubSub: ', PubSub);
 
 			this.$audio.addEventListener('loadedmetadata', this.loadHandler.bind(this));
 

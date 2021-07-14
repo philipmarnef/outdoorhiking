@@ -4,7 +4,8 @@ const CONTAINER_ID 				= 'app_map',
 			DISTANCE 						= 100,
 			PROXIMITY_EVENT 		= 'in-range',
 			LOCATIONERROR_EVENT = 'location-error',
-	  	DEBUG								= false;
+	  	DEBUG								= false,
+			LOCATION_DISABLED		= false;
 
 import L from 'leaflet';
 
@@ -48,9 +49,15 @@ export default function Map (options = {})
 		selectMarker (identifier) {
 			this.selected = this.getMarker(identifier);
 
-			// check (last known) distance to selected marker
-			const inRange = this.checkProximity();
-			PubSub.publish(PROXIMITY_EVENT, inRange);
+			// bypass location?
+			if(LOCATION_DISABLED) {
+				PubSub.publish(PROXIMITY_EVENT, true);
+			} 
+			else {
+				// check (last known) distance to selected marker
+				const inRange = this.checkProximity();
+				PubSub.publish(PROXIMITY_EVENT, inRange);
+			}
 
 			this.markers.forEach(marker => {
 				marker.leafletMarker._icon.classList.remove('map-marker-active');
@@ -180,30 +187,39 @@ export default function Map (options = {})
 			// position control
 			this.addPositionControl(this.leaflet);
 
-			// start location tracking
-			this.leaflet.map.locate({
-				watch: true,
-				maximumAge: 500,
-				enableHighAccuracy: true,
-			});
+			// check if location tracking is disabled
+			if(LOCATION_DISABLED) {
+				if(DEBUG) console.log('Location disabled');
+				// broadcast a false 'inRange' event
+				PubSub.publish(PROXIMITY_EVENT, true);
+			}
+			else {
 
-			// on location data, update the map
-			this.leaflet.map.addEventListener('locationfound', e => {
-				if(DEBUG) console.log('Location found');
-
-				// set location marker
-				this.setLocation(e.latlng);
-
-				// check distance to selected marker
-				const inRange = this.checkProximity();
-				PubSub.publish(PROXIMITY_EVENT, inRange);
-			});
-
-			// on location error, show a message
-			this.leaflet.map.addEventListener('locationerror', e => {
-				console.error(e);
-				PubSub.publish(LOCATIONERROR_EVENT, e.code);
-			});
+				// start location tracking
+				this.leaflet.map.locate({
+					watch: true,
+					maximumAge: 500,
+					enableHighAccuracy: true,
+				});
+	
+				// on location data, update the map
+				this.leaflet.map.addEventListener('locationfound', e => {
+					if(DEBUG) console.log('Location found');
+	
+					// set location marker
+					this.setLocation(e.latlng);
+	
+					// check distance to selected marker
+					const inRange = this.checkProximity();
+					PubSub.publish(PROXIMITY_EVENT, inRange);
+				});
+	
+				// on location error, show a message
+				this.leaflet.map.addEventListener('locationerror', e => {
+					console.error(e);
+					PubSub.publish(LOCATIONERROR_EVENT, e.code);
+				});
+			}
 		},
 	};
 

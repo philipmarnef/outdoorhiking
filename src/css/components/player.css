@@ -78,6 +78,24 @@
 	display: block;
 }
 
+*[data-player-loading] + .player-buttons .player-button-play {
+	background-image: none;
+}
+
+@keyframes loading {
+	from {
+		transform: rotate(0);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+*[data-player-loading] + .player-buttons .player-button-rewind {
+	background-image: url('../images/loading.svg');
+	animation: loading 1s linear 1s infinite;
+}
+
 .player-button-play.player-button-pause {
 	background-image: url('../images/pause.svg');
 }
