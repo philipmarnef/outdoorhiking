@@ -56,11 +56,6 @@ export default function App () {
 				}
 			});
 
-			// set map markers
-			if(!this.hasOwnProperty('map')) this.map = new Map();
-			this.map.addMarkers(json.markers);
-			this.map.selectMarker(json.id);
-
 			// set audio player
 			const $audio = document.querySelector(`[${ATTR_AUDIO}]`);
 			if($audio) {
@@ -74,8 +69,12 @@ export default function App () {
 					// add audiofile url to attribute
 					$audio.setAttribute(ATTR_AUDIO, json.audiofile);
 				}
-
 			}
+
+			// set map markers
+			if(!this.hasOwnProperty('map')) this.map = new Map();
+			this.map.addMarkers(json.markers);
+			this.map.selectMarker(json.id);
 
 			// open app
 			this.open();
