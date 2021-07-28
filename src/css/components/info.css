@@ -5,6 +5,7 @@
 	will-change: left;
 	overflow-behavior-y: none;
 	-webkit-overflow-scrolling: touch;
+	pointer-events: none;
 }
 
 .app-is-open .info-section {

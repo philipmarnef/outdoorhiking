@@ -23,22 +23,29 @@
 			</div>
 			<?= $langparam = $kirby->language()->code() === 'nl' ? '' : $kirby->language()->code() . '/' ?>
 			<ul class="poster-footer flex-grow-0 flex-shrink w-full px-ws text-poster">
-				<li class="hidden tall:block landscape:block leading-none">
-					<a class="inline-block w-3/12" href="/<?= $langparam ?>q/C98">A:</a><a href="/<?= $langparam ?>q/C98">Park Den Brandt</a>
+				<li class="hidden tall:block landscape:block leading-none" data-app-open="C98">
+					<span class="inline-block w-3/12">A:</span><span>Park Den Brandt</span>
 				</li>
-				<li class="hidden tall:block landscape:block leading-none border-black border-t-2">
-					<a class="inline-block w-3/12" href="/<?= $langparam ?>q/gJH">B:</a><a href="/<?= $langparam ?>q/gJH">Middelheimpark</a>
-				<li class="hidden tall:block landscape:block leading-none border-black border-t-2">
-					<a class="inline-block w-3/12" href="/<?= $langparam ?>q/NRq">C:</a><a href="/<?= $langparam ?>q/NRq">Park Vogelenzang</a>
+				<li class="hidden tall:block landscape:block leading-none border-black border-t-2" data-app-open="qJH">
+					<span class="inline-block w-3/12">B:</span><span>Middelheimpark</span>
+				<li class="hidden tall:block landscape:block leading-none border-black border-t-2" data-app-open="NRq">
+					<span class="inline-block w-3/12">C:</span><span>Park Vogelenzang</span>
 				</li>
-				<li class="tall:hidden landscape:hidden leading-none text-center">Nachtegalenpark</li>
+				<li class="tall:hidden landscape:hidden leading-none text-center" data-app-open="C98">
+					<span>Nachtegalenpark</span>
+				</li>
 			</ul>
 		</section>
 
 		<section class="info-section fixed top-0 z-20 w-full h-screen overflow-y-auto">
-			<div class="min-h-screen mt-vh landscape:mt-0 p-ws bg-green">
-				<nav class="mb-ws-half text-sm lg:text-base">
-					<?= snippet('language-menu') ?>
+			<div class="relative top-vh min-h-screen landscape:top-0 p-ws bg-green">
+				<nav class="flex justify-between mb-ws-half text-sm lg:text-base">
+					<div>
+						<?= snippet('language-menu') ?>
+					</div>
+					<div>
+						<span data-app-open="C98">KAART</span>
+					</div>
 				</nav>
 				<div class="xl:columns-2 bodytext hyphens">
 					<?= $page->intro()->kt() ?>
