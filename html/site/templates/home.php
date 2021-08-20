@@ -44,7 +44,7 @@
 						<?= snippet('language-menu') ?>
 					</div>
 					<div>
-						<span data-app-open="C98">KAART</span>
+						<button data-app-open="C98">KAART</button>
 					</div>
 				</nav>
 				<div class="xl:columns-2 bodytext hyphens">
