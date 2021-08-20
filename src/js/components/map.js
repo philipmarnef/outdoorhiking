@@ -5,7 +5,7 @@ const CONTAINER_ID 				= 'app_map',
 			PROXIMITY_EVENT 		= 'in-range',
 			LOCATIONERROR_EVENT = 'location-error',
 	  	DEBUG								= false,
-			LOCATION_DISABLED		= false;
+			LOCATION_DISABLED		= true;
 
 import L from 'leaflet';
 
@@ -190,7 +190,7 @@ export default function Map (options = {})
 			// check if location tracking is disabled
 			if(LOCATION_DISABLED) {
 				if(DEBUG) console.log('Location disabled');
-				// broadcast a false 'inRange' event
+				// broadcast a true 'inRange' event
 				PubSub.publish(PROXIMITY_EVENT, true);
 			}
 			else {
